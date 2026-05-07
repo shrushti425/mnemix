@@ -1,0 +1,1546 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mnemix AI | Free GEO Visibility Audit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #111;
+        --panel: #181818;
+        --panel-2: #202020;
+        --line: rgba(255, 255, 255, 0.1);
+        --muted: #9d9d9d;
+        --text: #f6f1ea;
+        --ember: #ff6b2b;
+        --gold: #ffb547;
+        --red: #ff4f4f;
+        --green: #3ddc97;
+        --blue: #6ca8ff;
+        --radius: 8px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--text);
+        background:
+          linear-gradient(125deg, rgba(255, 107, 43, 0.18), transparent 34%),
+          linear-gradient(235deg, rgba(255, 181, 71, 0.12), transparent 38%),
+          linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+          var(--bg);
+        background-size: auto, auto, 44px 44px, 44px 44px, auto;
+        font-family: "DM Sans", system-ui, sans-serif;
+      }
+
+      main {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 32px 0 56px;
+      }
+
+      .shell {
+        display: grid;
+        grid-template-columns: minmax(0, 0.92fr) minmax(340px, 0.62fr);
+        gap: 32px;
+        align-items: start;
+      }
+
+      header {
+        padding: 24px 0 28px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .brand-mark {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        letter-spacing: 0;
+        font-family: "Syne", sans-serif;
+      }
+
+      .mark {
+        width: 34px;
+        height: 34px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(255, 107, 43, 0.55);
+        background: linear-gradient(135deg, rgba(255, 107, 43, 0.24), rgba(255, 181, 71, 0.1));
+      }
+
+      .agency-pill {
+        border: 1px solid rgba(255, 181, 71, 0.32);
+        color: var(--gold);
+        padding: 8px 10px;
+        border-radius: 999px;
+        font-size: 13px;
+        background: rgba(255, 181, 71, 0.08);
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: "Syne", sans-serif;
+        letter-spacing: 0;
+        margin: 0;
+      }
+
+      h1 {
+        font-size: clamp(42px, 7vw, 84px);
+        line-height: 0.94;
+        max-width: 740px;
+      }
+
+      .hero-copy {
+        margin: 22px 0 0;
+        max-width: 660px;
+        color: #d7d0c8;
+        font-size: 18px;
+        line-height: 1.65;
+      }
+
+      .trust-row {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .trust-row div,
+      .form-card,
+      .progress-card,
+      .result-card,
+      .pillar-card,
+      .signal-list,
+      .fix-box {
+        border: 1px solid var(--line);
+        background: rgba(24, 24, 24, 0.74);
+        backdrop-filter: blur(18px);
+      }
+
+      .trust-row div {
+        padding: 16px;
+        border-radius: var(--radius);
+        color: #d8d8d8;
+        min-height: 86px;
+      }
+
+      .trust-row strong {
+        display: block;
+        color: var(--text);
+        margin-bottom: 6px;
+      }
+
+      .form-card {
+        border-radius: var(--radius);
+        padding: 22px;
+        position: sticky;
+        top: 18px;
+      }
+
+      .form-card h2 {
+        font-size: 25px;
+        margin-bottom: 8px;
+      }
+
+      .form-card p {
+        margin: 0 0 18px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .field-help {
+        margin-top: 8px;
+        color: #a9a29a;
+        font-size: 12px;
+        line-height: 1.45;
+      }
+
+      .field-row {
+        display: grid;
+        grid-template-columns: 120px minmax(0, 1fr);
+        gap: 10px;
+        align-items: start;
+      }
+
+      select {
+        width: 100%;
+        min-height: 48px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: var(--radius);
+        background: #101010;
+        color: var(--text);
+        padding: 0 12px;
+        font: inherit;
+        outline: none;
+      }
+
+      select:focus {
+        border-color: rgba(255, 181, 71, 0.72);
+        box-shadow: 0 0 0 3px rgba(255, 181, 71, 0.12);
+      }
+
+      .phone-wrap {
+        display: grid;
+        grid-template-columns: 130px minmax(0, 1fr);
+        gap: 10px;
+      }
+
+      .phone-code {
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: var(--radius);
+        background: #101010;
+        color: var(--gold);
+        font-weight: 700;
+        letter-spacing: 0;
+      }
+
+      label {
+        display: block;
+        font-size: 13px;
+        font-weight: 700;
+        color: #ded8d0;
+        margin: 14px 0 7px;
+      }
+
+      input {
+        width: 100%;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: var(--radius);
+        background: #101010;
+        color: var(--text);
+        min-height: 48px;
+        padding: 0 13px;
+        font: inherit;
+        outline: none;
+      }
+
+      input:focus {
+        border-color: rgba(255, 181, 71, 0.72);
+        box-shadow: 0 0 0 3px rgba(255, 181, 71, 0.12);
+      }
+
+      input.invalid {
+        border-color: var(--red);
+      }
+
+      button {
+        border: 0;
+        border-radius: var(--radius);
+        min-height: 50px;
+        padding: 0 18px;
+        cursor: pointer;
+        font: inherit;
+        font-weight: 800;
+        color: #111;
+        background: linear-gradient(135deg, var(--ember), var(--gold));
+        transition: transform 0.2s ease, opacity 0.2s ease;
+      }
+
+      button:hover {
+        transform: translateY(-1px);
+      }
+
+      button:disabled {
+        cursor: wait;
+        opacity: 0.72;
+      }
+
+      .secondary-btn {
+        color: var(--text);
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.17);
+      }
+
+      .header-contact {
+        min-height: 42px;
+        padding: 0 14px;
+      }
+
+      .submit-btn {
+        width: 100%;
+        margin-top: 18px;
+      }
+
+      .progress-card,
+      .results {
+        margin-top: 28px;
+      }
+
+      .progress-card {
+        display: none;
+        border-radius: var(--radius);
+        padding: 18px;
+      }
+
+      .progress-track {
+        height: 9px;
+        border-radius: 999px;
+        background: #2b2b2b;
+        overflow: hidden;
+        margin-bottom: 16px;
+      }
+
+      .progress-fill {
+        width: 8%;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--ember), var(--gold));
+        transition: width 0.8s ease;
+      }
+
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+      }
+
+      .step {
+        color: var(--muted);
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        white-space: nowrap;
+      }
+
+      .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 999px;
+        background: #555;
+      }
+
+      .step.active,
+      .step.done {
+        color: var(--text);
+      }
+
+      .step.active .dot,
+      .step.done .dot {
+        background: var(--gold);
+        box-shadow: 0 0 18px rgba(255, 181, 71, 0.6);
+      }
+
+      .results {
+        display: none;
+      }
+
+      .result-card {
+        border-radius: var(--radius);
+        padding: 24px;
+      }
+
+      .result-top {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 190px;
+        gap: 24px;
+        align-items: center;
+      }
+
+      .meta {
+        color: var(--muted);
+        line-height: 1.7;
+        margin-top: 12px;
+      }
+
+      .score-wrap {
+        width: 172px;
+        height: 172px;
+        position: relative;
+        margin-left: auto;
+      }
+
+      .score-wrap svg {
+        width: 100%;
+        height: 100%;
+        transform: rotate(-90deg);
+      }
+
+      .score-value {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        font-family: "Syne", sans-serif;
+      }
+
+      .score-value strong {
+        display: block;
+        font-size: 48px;
+        line-height: 1;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        min-height: 30px;
+        padding: 0 10px;
+        margin-top: 16px;
+        border-radius: 999px;
+        font-weight: 800;
+        font-size: 13px;
+      }
+
+      .badge.leader,
+      .badge.strong {
+        color: #071a10;
+        background: var(--green);
+      }
+
+      .badge.partial {
+        color: #171007;
+        background: var(--gold);
+      }
+
+      .badge.barely {
+        color: #1f0d04;
+        background: var(--ember);
+      }
+
+      .badge.not {
+        color: #fff;
+        background: var(--red);
+      }
+
+      .pillar-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin-top: 16px;
+      }
+
+      .pillar-card {
+        border-radius: var(--radius);
+        padding: 18px;
+      }
+
+      .pillar-card h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+      }
+
+      .pillar-tag {
+        display: inline-flex;
+        align-items: center;
+        min-height: 28px;
+        padding: 0 10px;
+        border-radius: 999px;
+        background: rgba(255, 181, 71, 0.12);
+        color: var(--gold);
+        border: 1px solid rgba(255, 181, 71, 0.2);
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .pillar-note {
+        margin: 10px 0 0;
+        color: #9d958c;
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .pillar-score {
+        color: var(--gold);
+        font-size: 24px;
+        font-weight: 800;
+      }
+
+      .mini-bar,
+      .signal-bar {
+        width: 100%;
+        overflow: hidden;
+        border-radius: 999px;
+        background: #2d2d2d;
+      }
+
+      .mini-bar {
+        height: 8px;
+        margin: 11px 0 13px;
+      }
+
+      .mini-fill,
+      .signal-fill {
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--ember), var(--gold));
+        width: 0;
+        transition: width 1s ease;
+      }
+
+      .pillar-card p,
+      .summary {
+        color: #d2ccc4;
+        line-height: 1.55;
+        margin: 0;
+      }
+
+      .signal-list {
+        margin-top: 18px;
+        border-radius: var(--radius);
+        padding: 14px 16px 16px;
+        position: relative;
+      }
+
+      .signal-row {
+        display: grid;
+        grid-template-columns: minmax(190px, 1fr) minmax(120px, 0.8fr) 54px;
+        gap: 12px;
+        align-items: center;
+        min-height: 46px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .signal-row:last-child {
+        border-bottom: 0;
+      }
+
+      .signal-name {
+        color: #eee7df;
+        font-weight: 700;
+      }
+
+      .signal-bar {
+        height: 7px;
+      }
+
+      .signal-score {
+        text-align: right;
+        color: var(--gold);
+        font-weight: 800;
+      }
+
+      .signal-teaser {
+        display: grid;
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+
+      .signal-teaser .signal-row {
+        grid-template-columns: minmax(170px, 1fr) minmax(0, 1.6fr) 64px;
+        border-bottom: 0;
+        min-height: 58px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius);
+        padding: 12px 14px;
+        align-items: center;
+      }
+
+      .signal-teaser .signal-bar {
+        display: block;
+      }
+
+      .signal-teaser .signal-score {
+        display: block;
+      }
+
+      .signal-teaser .signal-name {
+        font-size: 14px;
+      }
+
+      .signal-teaser .signal-value {
+        display: none;
+      }
+
+      .signal-teaser .signal-value {
+        display: block;
+        margin-top: 10px;
+        color: var(--gold);
+        font-family: "Syne", sans-serif;
+        font-size: 22px;
+      }
+
+      .signal-blur-shell {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--radius);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.025);
+      }
+
+      .signal-blur-overlay {
+        position: absolute;
+        inset: 0;
+        backdrop-filter: blur(9px);
+        background: linear-gradient(180deg, rgba(17, 17, 17, 0.4), rgba(17, 17, 17, 0.92));
+        display: grid;
+        place-items: center;
+        padding: 18px;
+        text-align: center;
+        z-index: 2;
+      }
+
+      .signal-blur-overlay button {
+        margin-bottom: 10px;
+      }
+
+      .signal-blur-overlay p {
+        margin: 0;
+        max-width: 340px;
+        color: #e1dbd3;
+        line-height: 1.45;
+      }
+
+      .signal-blurred {
+        filter: blur(4px);
+        opacity: 0.45;
+        pointer-events: none;
+      }
+
+      .summary-section {
+        margin-top: 18px;
+      }
+
+      .summary-section h3 {
+        margin-bottom: 10px;
+      }
+
+      .fix-box {
+        margin-top: 16px;
+        border-color: rgba(255, 107, 43, 0.42);
+        background: linear-gradient(135deg, rgba(255, 107, 43, 0.22), rgba(255, 181, 71, 0.08));
+        border-radius: var(--radius);
+        padding: 18px;
+      }
+
+      .fix-box strong {
+        display: block;
+        color: var(--gold);
+        margin-bottom: 8px;
+      }
+
+      .cta-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 18px;
+      }
+
+      .cta-row button {
+        min-width: 170px;
+      }
+
+      .error {
+        display: none;
+        margin-top: 14px;
+        color: #ffd4d4;
+        background: rgba(255, 79, 79, 0.12);
+        border: 1px solid rgba(255, 79, 79, 0.4);
+        padding: 12px;
+        border-radius: var(--radius);
+      }
+
+      .modal {
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 18px;
+        z-index: 30;
+      }
+
+      .modal.open {
+        display: flex;
+      }
+
+      .modal-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.72);
+      }
+
+      .modal-panel {
+        position: relative;
+        z-index: 1;
+        width: min(640px, 100%);
+        max-height: min(88vh, 860px);
+        overflow: auto;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 16px;
+        background: #141414;
+        padding: 22px;
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+      }
+
+      .modal-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 14px;
+        margin-bottom: 18px;
+      }
+
+      .modal-head h3 {
+        font-size: 26px;
+        margin-bottom: 6px;
+      }
+
+      .modal-head p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .icon-btn {
+        width: 42px;
+        height: 42px;
+        padding: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--text);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+      }
+
+      .modal-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .modal-grid .full {
+        grid-column: 1 / -1;
+      }
+
+      textarea {
+        width: 100%;
+        min-height: 124px;
+        resize: vertical;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: var(--radius);
+        background: #101010;
+        color: var(--text);
+        padding: 14px 13px;
+        font: inherit;
+        outline: none;
+      }
+
+      textarea:focus {
+        border-color: rgba(255, 181, 71, 0.72);
+        box-shadow: 0 0 0 3px rgba(255, 181, 71, 0.12);
+      }
+
+      .modal-success {
+        display: none;
+        border-radius: 14px;
+        border: 1px solid rgba(61, 220, 151, 0.24);
+        background: rgba(61, 220, 151, 0.08);
+        padding: 18px;
+        color: #effef7;
+        line-height: 1.5;
+      }
+
+      .modal-success strong {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--green);
+      }
+
+      @media (max-width: 880px) {
+        main {
+          width: min(100% - 24px, 720px);
+          padding-top: 18px;
+        }
+
+        header {
+          align-items: flex-start;
+        }
+
+        .shell,
+        .result-top,
+        .pillar-grid,
+        .signal-teaser {
+          grid-template-columns: 1fr;
+        }
+
+        .form-card {
+          position: static;
+        }
+
+        .trust-row {
+          grid-template-columns: 1fr;
+        }
+
+        .score-wrap {
+          margin: 0;
+        }
+
+        .steps {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .signal-row {
+          grid-template-columns: 1fr 1fr 44px;
+        }
+
+        .field-row,
+        .phone-wrap {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 520px) {
+        h1 {
+          font-size: 40px;
+        }
+
+        .signal-row {
+          grid-template-columns: 1fr;
+          gap: 7px;
+          padding: 12px 0;
+        }
+
+        .signal-score {
+          text-align: left;
+        }
+
+        .signal-list {
+          padding: 12px;
+        }
+
+        .cta-row button {
+          width: 100%;
+        }
+
+        .score-wrap {
+          width: 148px;
+          height: 148px;
+        }
+
+        .score-value strong {
+          font-size: 40px;
+        }
+
+        .modal-grid {
+          grid-template-columns: 1fr;
+        }
+
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="brand-mark">
+          <div class="mark">M</div>
+          <span>Mnemix AI</span>
+        </div>
+        <div class="header-actions">
+          <div class="agency-pill">GEO agency free audit</div>
+          <button class="secondary-btn header-contact" id="contactOpenBtn" type="button">Contact Us</button>
+        </div>
+      </header>
+
+      <section class="shell">
+        <div>
+          <h1>Find out how visible your brand is inside AI answers.</h1>
+          <p class="hero-copy">
+            Mnemix AI audits your brand across entity clarity, recommendation readiness, and authority signals so you can see what ChatGPT-style engines are likely to understand, miss, or misrepresent.
+          </p>
+          <div class="trust-row">
+            <div><strong>Entity clarity</strong>Brand, category, website, and positioning signals.</div>
+            <div><strong>GEO scoring</strong>Brutally honest visibility bands from 0 to 100.</div>
+            <div><strong>Actionable fix</strong>One priority move to improve AI discoverability.</div>
+          </div>
+
+          <section class="progress-card" id="progressCard">
+            <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+            <div class="steps" id="steps">
+              <div class="step active"><span class="dot"></span>Scraping</div>
+              <div class="step"><span class="dot"></span>Researching</div>
+              <div class="step"><span class="dot"></span>Scoring</div>
+              <div class="step"><span class="dot"></span>Done</div>
+            </div>
+          </section>
+        </div>
+
+        <form class="form-card" id="auditForm" novalidate>
+          <h2>Run free audit</h2>
+          <p>Get a quick GEO visibility snapshot for your brand.</p>
+
+          <label for="brandName">Brand Name</label>
+          <input id="brandName" name="brand_name" autocomplete="organization" placeholder="Acme Labs" required />
+
+          <label for="brandWebsite">Brand Website</label>
+          <input id="brandWebsite" name="brand_website" inputmode="url" autocomplete="url" placeholder="www.acme.com" required />
+
+          <label for="email">Work Email</label>
+          <input id="email" name="email_id" type="email" autocomplete="email" placeholder="you@company.com" required />
+          <div class="field-help">Must be a valid email format.</div>
+
+          <label for="phone">Phone Number</label>
+          <div class="phone-wrap">
+            <select id="country" name="phone_country" required></select>
+            <input id="phone" name="phone_number" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="9876543210" required />
+          </div>
+          <div class="field-help" id="phoneHelp">Choose your country, then enter the exact number of digits for that country.</div>
+
+          <button class="submit-btn" id="submitBtn" type="submit">Audit My Brand</button>
+          <div class="error" id="errorBox"></div>
+        </form>
+      </section>
+
+      <section class="results" id="results"></section>
+    </main>
+
+    <div class="modal" id="contactModal" aria-hidden="true">
+      <div class="modal-backdrop" id="contactBackdrop"></div>
+      <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+        <div class="modal-head">
+          <div>
+            <h3 id="contactTitle">Contact us</h3>
+            <p>Want to know more? Send us the basics and we’ll get back to you soon.</p>
+          </div>
+          <button class="icon-btn" id="contactCloseBtn" type="button" aria-label="Close contact form">×</button>
+        </div>
+
+        <form id="contactForm" novalidate>
+          <div class="modal-grid">
+            <div class="full">
+              <label for="contactBrand">Brand Name</label>
+              <input id="contactBrand" name="brand_name" autocomplete="organization" placeholder="Acme Labs" required />
+            </div>
+            <div class="full">
+              <label for="contactWebsite">Brand Website</label>
+              <input id="contactWebsite" name="brand_website" inputmode="url" autocomplete="url" placeholder="www.acme.com" required />
+            </div>
+            <div>
+              <label for="contactEmail">Email</label>
+              <input id="contactEmail" name="email_id" type="email" autocomplete="email" placeholder="you@company.com" required />
+            </div>
+            <div>
+              <label for="contactPhone">Phone Number</label>
+              <div class="phone-wrap">
+                <select id="contactCountry" name="phone_country" required></select>
+                <input id="contactPhone" name="phone_number" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="9876543210" required />
+              </div>
+              <div class="field-help" id="contactPhoneHelp">Choose your country, then enter the exact number of digits for that country.</div>
+            </div>
+            <div class="full">
+              <label for="contactNote">Additional Note</label>
+              <textarea id="contactNote" name="additional_note" placeholder="Tell us what you’re looking for."></textarea>
+            </div>
+          </div>
+          <button class="submit-btn" id="contactSubmitBtn" type="submit">Send Message</button>
+          <div class="error" id="contactError"></div>
+          <div class="modal-success" id="contactSuccess">
+            <strong>Thank you for contacting us.</strong>
+            We will get back to you soon!
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const form = document.getElementById('auditForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const progressCard = document.getElementById('progressCard');
+      const progressFill = document.getElementById('progressFill');
+      const steps = [...document.querySelectorAll('.step')];
+      const results = document.getElementById('results');
+      const errorBox = document.getElementById('errorBox');
+      const brandWebsite = document.getElementById('brandWebsite');
+      const email = document.getElementById('email');
+      const phone = document.getElementById('phone');
+      const country = document.getElementById('country');
+      const phoneHelp = document.getElementById('phoneHelp');
+      const contactOpenBtn = document.getElementById('contactOpenBtn');
+      const contactModal = document.getElementById('contactModal');
+      const contactBackdrop = document.getElementById('contactBackdrop');
+      const contactCloseBtn = document.getElementById('contactCloseBtn');
+      const contactForm = document.getElementById('contactForm');
+      const contactSubmitBtn = document.getElementById('contactSubmitBtn');
+      const contactError = document.getElementById('contactError');
+      const contactSuccess = document.getElementById('contactSuccess');
+      const contactBrand = document.getElementById('contactBrand');
+      const contactWebsite = document.getElementById('contactWebsite');
+      const contactEmail = document.getElementById('contactEmail');
+      const contactCountry = document.getElementById('contactCountry');
+      const contactPhone = document.getElementById('contactPhone');
+      const contactPhoneHelp = document.getElementById('contactPhoneHelp');
+      const contactNote = document.getElementById('contactNote');
+      let timers = [];
+      const AUDIT_LOCK_PREFIX = 'mnemix-audit-lock:';
+
+      const countries = [
+        { code: 'IN', label: 'India +91', dial: '91', minDigits: 10, maxDigits: 10 },
+        { code: 'US', label: 'United States +1', dial: '1', minDigits: 10, maxDigits: 10 },
+        { code: 'CA', label: 'Canada +1', dial: '1', minDigits: 10, maxDigits: 10 },
+        { code: 'GB', label: 'United Kingdom +44', dial: '44', minDigits: 10, maxDigits: 10 },
+        { code: 'AU', label: 'Australia +61', dial: '61', minDigits: 9, maxDigits: 9 },
+        { code: 'SG', label: 'Singapore +65', dial: '65', minDigits: 8, maxDigits: 8 },
+        { code: 'AE', label: 'UAE +971', dial: '971', minDigits: 9, maxDigits: 9 },
+        { code: 'SA', label: 'Saudi Arabia +966', dial: '966', minDigits: 9, maxDigits: 9 },
+        { code: 'ZA', label: 'South Africa +27', dial: '27', minDigits: 9, maxDigits: 9 },
+        { code: 'PH', label: 'Philippines +63', dial: '63', minDigits: 10, maxDigits: 10 },
+        { code: 'BR', label: 'Brazil +55', dial: '55', minDigits: 10, maxDigits: 11 },
+        { code: 'DE', label: 'Germany +49', dial: '49', minDigits: 10, maxDigits: 11 },
+        { code: 'FR', label: 'France +33', dial: '33', minDigits: 9, maxDigits: 9 },
+        { code: 'MX', label: 'Mexico +52', dial: '52', minDigits: 10, maxDigits: 10 },
+        { code: 'ID', label: 'Indonesia +62', dial: '62', minDigits: 9, maxDigits: 10 },
+        { code: 'NZ', label: 'New Zealand +64', dial: '64', minDigits: 8, maxDigits: 9 },
+        { code: 'PK', label: 'Pakistan +92', dial: '92', minDigits: 10, maxDigits: 10 },
+        { code: 'BD', label: 'Bangladesh +880', dial: '880', minDigits: 10, maxDigits: 10 },
+        { code: 'NG', label: 'Nigeria +234', dial: '234', minDigits: 10, maxDigits: 10 },
+        { code: 'KE', label: 'Kenya +254', dial: '254', minDigits: 9, maxDigits: 9 },
+        { code: 'MY', label: 'Malaysia +60', dial: '60', minDigits: 9, maxDigits: 10 },
+        { code: 'TH', label: 'Thailand +66', dial: '66', minDigits: 9, maxDigits: 9 }
+      ];
+
+      const pillarMeta = [
+        {
+          title: 'Entity clarity and category ownership',
+          short: 'How clearly AI can identify your brand and what space you own.',
+          note: 'This affects whether the model can name you correctly and place you in the right category.'
+        },
+        {
+          title: 'Recommendation readiness',
+          short: 'How easily AI can recommend you when someone asks for a solution.',
+          note: 'This reflects whether your brand feels like a credible answer to a real user problem.'
+        },
+        {
+          title: 'Authority and external proof',
+          short: 'How much outside evidence exists that your brand is real, notable, and structured.',
+          note: 'This covers citations, third-party mentions, Wikipedia presence, and schema.'
+        }
+      ];
+
+      function loadCountryOptions(selectEl = country, phoneEl = phone, helpEl = phoneHelp) {
+        selectEl.innerHTML = countries.map((item, index) => `<option value="${item.code}" ${index === 0 ? 'selected' : ''}>${item.label}</option>`).join('');
+        updatePhoneHint(selectEl, phoneEl, helpEl);
+      }
+
+      function getSelectedCountry(selectEl = country) {
+        return countries.find((item) => item.code === selectEl.value) || countries[0];
+      }
+
+      function updatePhoneHint(selectEl = country, phoneEl = phone, helpEl = phoneHelp) {
+        const selected = getSelectedCountry(selectEl);
+        const lengthText = selected.minDigits === selected.maxDigits ? `${selected.minDigits} digits` : `${selected.minDigits}-${selected.maxDigits} digits`;
+        phoneEl.placeholder = `Enter ${lengthText}`;
+        if (helpEl) {
+          helpEl.textContent = `Choose your country, then enter ${lengthText} for ${selected.label}.`;
+        }
+      }
+
+      function normalizeWebsite(value) {
+        let raw = String(value || '').trim().toLowerCase();
+        if (!raw) return '';
+        raw = raw.replace(/^https?:\/\//, '');
+        raw = raw.replace(/[/?#].*$/, '').replace(/\/+$/, '');
+        if (!/^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(raw)) return '';
+        return `https://${raw}`;
+      }
+
+      function sanitizeDigits(value) {
+        return String(value || '').replace(/\D/g, '');
+      }
+
+      function digitsMatchCountry(value, selectEl = country) {
+        const selected = getSelectedCountry(selectEl);
+        const digits = sanitizeDigits(value);
+        if (!digits) return { valid: false, digits };
+        const minDigits = selected.minDigits || selected.digits || 0;
+        const maxDigits = selected.maxDigits || selected.digits || minDigits;
+        if (digits.length >= minDigits && digits.length <= maxDigits) return { valid: true, digits };
+        if (digits.startsWith(selected.dial) && digits.length >= minDigits + selected.dial.length && digits.length <= maxDigits + selected.dial.length) {
+          return { valid: true, digits: digits.slice(selected.dial.length) };
+        }
+        return { valid: false, digits };
+      }
+
+      function getAuditLockKey(website, brandName) {
+        return `${AUDIT_LOCK_PREFIX}${website}::${brandName.toLowerCase()}`;
+      }
+
+      function lockCompany(website, brandName) {
+        try {
+          localStorage.setItem(getAuditLockKey(website, brandName), '1');
+        } catch (error) {}
+      }
+
+      function isCompanyLocked(website, brandName) {
+        try {
+          return localStorage.getItem(getAuditLockKey(website, brandName)) === '1';
+        } catch (error) {
+          return false;
+        }
+      }
+
+      function setFieldInvalid(field, invalid) {
+        field.classList.toggle('invalid', invalid);
+      }
+
+      function setStep(index) {
+        const widths = ['22%', '48%', '74%', '100%'];
+        progressFill.style.width = widths[index] || '22%';
+        steps.forEach((step, i) => {
+          step.classList.toggle('active', i === index);
+          step.classList.toggle('done', i < index);
+        });
+      }
+
+      function startProgress() {
+        timers.forEach(clearTimeout);
+        timers = [];
+        progressCard.style.display = 'block';
+        setStep(0);
+        timers.push(setTimeout(() => setStep(1), 8000));
+        timers.push(setTimeout(() => setStep(2), 22000));
+      }
+
+      function finishProgress() {
+        timers.forEach(clearTimeout);
+        setStep(3);
+        setTimeout(() => {
+          progressCard.style.display = 'none';
+        }, 500);
+      }
+
+      function validate() {
+        let ok = true;
+        const brandName = form.brand_name.value.trim();
+        const websiteValue = form.brand_website.value.trim();
+        const emailValue = form.email_id.value.trim();
+        const phoneValue = form.phone_number.value.trim();
+
+        setFieldInvalid(form.brand_name, !brandName);
+        if (!brandName) ok = false;
+
+        const normalizedWebsite = normalizeWebsite(websiteValue);
+        setFieldInvalid(brandWebsite, !normalizedWebsite);
+        if (!normalizedWebsite) ok = false;
+
+        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue);
+        setFieldInvalid(email, !emailOk);
+        if (!emailOk) ok = false;
+
+        const phoneCheck = digitsMatchCountry(phoneValue);
+        setFieldInvalid(phone, !phoneCheck.valid);
+        setFieldInvalid(country, !country.value);
+        if (!phoneCheck.valid || !country.value) ok = false;
+
+        if (normalizedWebsite && isCompanyLocked(normalizedWebsite, brandName)) {
+          return { ok: false, locked: true, brandName, website: normalizedWebsite };
+        }
+
+        return { ok, locked: false, brandName, website: normalizedWebsite, phoneDigits: phoneCheck.digits };
+      }
+
+      function badgeClass(verdict) {
+        const v = String(verdict || '').toLowerCase();
+        if (v.includes('leader')) return 'leader';
+        if (v.includes('strong')) return 'strong';
+        if (v.includes('partial')) return 'partial';
+        if (v.includes('barely')) return 'barely';
+        return 'not';
+      }
+
+      function escapeHtml(value) {
+        return String(value ?? '').replace(/[&<>"']/g, (char) => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#039;'
+        })[char]);
+      }
+
+      function pct(score, max) {
+        return Math.max(0, Math.min(100, Math.round((Number(score || 0) / max) * 100)));
+      }
+
+      function labelScore(key, score) {
+        const visible = String(score || 0);
+        return key === 'brandNameClarity' || key === 'categoryOwnership' || key === 'thirdPartyCoverage' ? visible : visible;
+      }
+
+      function renderSignalRow(label, score, max, visible = true) {
+        const safeScore = Number(score || 0);
+        return `
+          <div class="signal-row ${visible ? '' : 'signal-blurred'}">
+            <div class="signal-name">${escapeHtml(label)}</div>
+            <div class="signal-bar"><div class="signal-fill" data-width="${pct(safeScore, max)}%"></div></div>
+            <div class="signal-score">${safeScore}/${max}</div>
+          </div>
+        `;
+      }
+
+      function renderResults(data) {
+        const circumference = 2 * Math.PI * 72;
+        const offset = circumference - (Math.max(0, Math.min(100, data.fullScore)) / 100) * circumference;
+        const signals = {
+          ...data.pillar1?.signals,
+          ...data.pillar2?.signals,
+          wikipedia: data.wiki,
+          thirdPartyCoverage: data.thirdParty,
+          structuredData: data.structured
+        };
+        const visibleSignals = [
+          ['brandNameClarity', 'Brand name clarity', 8],
+          ['categoryOwnership', 'Category ownership', 8],
+          ['thirdPartyCoverage', 'Third-party coverage', 10]
+        ];
+        const hiddenSignals = [
+          ['contentDepth', 'Content depth', 8],
+          ['externalSignalStrength', 'External signal strength', 8],
+          ['competitiveDistinctiveness', 'Competitive distinctiveness', 8],
+          ['brandRepresentationAccuracy', 'Brand representation accuracy', 10],
+          ['recommendationWorthiness', 'Recommendation worthiness', 10],
+          ['competitivePositioningClarity', 'Competitive positioning clarity', 10],
+          ['wikipedia', 'Wikipedia presence', 10],
+          ['structuredData', 'Structured data', 10]
+        ];
+
+        results.innerHTML = `
+          <div class="result-card">
+            <div class="result-top">
+              <div>
+                <h2>${escapeHtml(data.brandName)}</h2>
+                <div class="meta">
+                  ${escapeHtml(data.website)}<br>
+                  ${escapeHtml(data.category)}<br>
+                  Competitors: ${escapeHtml(data.competitor1)} and ${escapeHtml(data.competitor2)}
+                </div>
+                <span class="badge ${badgeClass(data.verdictBand)}">${escapeHtml(data.verdictBand)}</span>
+              </div>
+              <div class="score-wrap">
+                <svg viewBox="0 0 172 172" aria-label="Visibility score">
+                  <circle cx="86" cy="86" r="72" stroke="rgba(255,255,255,0.12)" stroke-width="14" fill="none"></circle>
+                  <circle id="scoreRing" cx="86" cy="86" r="72" stroke="#FFB547" stroke-width="14" fill="none" stroke-linecap="round" stroke-dasharray="${circumference}" stroke-dashoffset="${circumference}"></circle>
+                </svg>
+                <div class="score-value"><div><strong>${Number(data.fullScore || 0)}</strong><span>/100</span></div></div>
+              </div>
+            </div>
+
+            <div class="pillar-grid">
+              ${pillarCard(pillarMeta[0].title, data.p1Total, 40, pillarMeta[0].short, pillarMeta[0].note, data.pillar1?.reasoning)}
+              ${pillarCard(pillarMeta[1].title, data.p2Total, 30, pillarMeta[1].short, pillarMeta[1].note, data.pillar2?.reasoning)}
+              ${pillarCard(pillarMeta[2].title, data.p3Total, 30, pillarMeta[2].short, pillarMeta[2].note, data.pillar3?.reasoning)}
+            </div>
+
+            <div class="signal-list">
+              <div class="signal-teaser">
+                ${visibleSignals.map(([key, label, max]) => `
+                  <div class="signal-row">
+                    <div class="signal-name">${escapeHtml(label)}</div>
+                    <div class="signal-bar"><div class="signal-fill" data-width="${pct(signals[key], max)}%"></div></div>
+                    <div class="signal-score">${Number(signals[key] || 0)}/${max}</div>
+                  </div>
+                `).join('')}
+              </div>
+              <div class="signal-blur-shell">
+                <div class="signal-blur-overlay">
+                  <div>
+                    <button type="button" onclick="location.href='mailto:hello@mnemix.ai?subject=Full GEO report request'">Get Full Report</button>
+                    <p>Unlock the rest of the signal breakdown, plus the exact actions to improve AI visibility.</p>
+                  </div>
+                </div>
+                <div>
+                  ${hiddenSignals.map(([key, label, max]) => renderSignalRow(label, signals[key], max, false)).join('')}
+                </div>
+              </div>
+            </div>
+
+            <div class="summary-section">
+              <h3>Audit Summary</h3>
+              <p class="summary">${escapeHtml(data.summary)}</p>
+            </div>
+
+            <div class="fix-box">
+              <strong>Top Priority Fix</strong>
+              ${escapeHtml(data.topFix)}
+            </div>
+          </div>
+        `;
+
+        results.style.display = 'block';
+
+        requestAnimationFrame(() => {
+          document.getElementById('scoreRing').style.transition = 'stroke-dashoffset 1.4s ease';
+          document.getElementById('scoreRing').style.strokeDashoffset = offset;
+          document.querySelectorAll('[data-width]').forEach((el) => {
+            el.style.width = el.dataset.width;
+          });
+        });
+
+        results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function renderLockedState(brandName, website) {
+        results.innerHTML = `
+          <div class="result-card">
+            <div class="result-top" style="grid-template-columns: 1fr;">
+              <div>
+                <h2>${escapeHtml(brandName)}</h2>
+                <div class="meta">
+                  ${escapeHtml(website)}<br>
+                  You’ve already used the free visibility audit for this brand.
+                </div>
+                <span class="badge partial">Free audit already used</span>
+              </div>
+            </div>
+
+            <div class="fix-box">
+              <strong>Your free audit is already unlocked</strong>
+              You’ve already run this brand through the free audit once, so we won’t generate another free version here. The full audit is the next step if you want the complete breakdown, deeper signal analysis, and the remaining recommendations.
+              <div style="margin-top: 14px; color: #f2d7be; line-height: 1.5;">
+                If this wasn’t you, or you want a quick conversation before moving ahead, contact us and we’ll help.
+              </div>
+              <div class="cta-row" style="margin-top: 14px;">
+                <button type="button" class="secondary-btn" onclick="document.getElementById('contactOpenBtn').click()">Contact Us</button>
+              </div>
+            </div>
+
+            <div class="cta-row">
+              <button type="button" onclick="location.href='mailto:hello@mnemix.ai?subject=Full GEO report request'">Get Full Report</button>
+            </div>
+          </div>
+        `;
+        results.style.display = 'block';
+        results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function openContactModal() {
+        contactForm.reset();
+        contactError.style.display = 'none';
+        contactSuccess.style.display = 'none';
+        contactForm.style.display = 'block';
+        contactSubmitBtn.disabled = false;
+        contactSubmitBtn.textContent = 'Send Message';
+
+        contactBrand.value = form.brand_name.value.trim();
+        contactWebsite.value = form.brand_website.value.trim();
+        contactEmail.value = form.email_id.value.trim();
+        contactCountry.value = country.value || 'IN';
+        contactPhone.value = form.phone_number.value.trim();
+        contactNote.value = '';
+        updatePhoneHint(contactCountry, contactPhone, contactPhoneHelp);
+
+        contactModal.classList.add('open');
+        contactModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeContactModal() {
+        contactModal.classList.remove('open');
+        contactModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      function validateContact() {
+        let ok = true;
+        const brandValue = contactBrand.value.trim();
+        const websiteValue = contactWebsite.value.trim();
+        const emailValue = contactEmail.value.trim();
+        const phoneValue = contactPhone.value.trim();
+
+        setFieldInvalid(contactBrand, !brandValue);
+        if (!brandValue) ok = false;
+
+        const normalizedWebsite = normalizeWebsite(websiteValue);
+        setFieldInvalid(contactWebsite, !normalizedWebsite);
+        if (!normalizedWebsite) ok = false;
+
+        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue);
+        setFieldInvalid(contactEmail, !emailOk);
+        if (!emailOk) ok = false;
+
+        const phoneCheck = digitsMatchCountry(phoneValue, contactCountry);
+        setFieldInvalid(contactPhone, !phoneCheck.valid);
+        setFieldInvalid(contactCountry, !contactCountry.value);
+        if (!phoneCheck.valid || !contactCountry.value) ok = false;
+
+        return {
+          ok,
+          brandName: brandValue,
+          website: normalizedWebsite,
+          email: emailValue,
+          phoneDigits: phoneCheck.digits,
+          note: contactNote.value.trim(),
+          country: getSelectedCountry(contactCountry)
+        };
+      }
+
+      function pillarCard(title, score, max, short, note, reasoning) {
+        return `
+          <div class="pillar-card">
+            <span class="pillar-tag">What this means</span>
+            <h3>${title}</h3>
+            <p class="pillar-note">${escapeHtml(short)}</p>
+            <div class="pillar-score">${Number(score || 0)}/${max}</div>
+            <div class="mini-bar"><div class="mini-fill" data-width="${pct(score, max)}%"></div></div>
+            <p class="pillar-note">${escapeHtml(note)}</p>
+            <p>${escapeHtml(reasoning || 'No reasoning returned.')}</p>
+          </div>
+        `;
+      }
+
+      form.addEventListener('input', (event) => {
+        if (event.target.matches('input, select')) event.target.classList.remove('invalid');
+      });
+
+      contactForm.addEventListener('input', (event) => {
+        if (event.target.matches('input, select, textarea')) event.target.classList.remove('invalid');
+      });
+
+      country.addEventListener('change', updatePhoneHint);
+      country.addEventListener('change', () => country.classList.remove('invalid'));
+      contactCountry.addEventListener('change', () => {
+        updatePhoneHint(contactCountry, contactPhone, contactPhoneHelp);
+        contactCountry.classList.remove('invalid');
+      });
+
+      contactOpenBtn.addEventListener('click', openContactModal);
+      contactCloseBtn.addEventListener('click', closeContactModal);
+      contactBackdrop.addEventListener('click', closeContactModal);
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && contactModal.classList.contains('open')) {
+          closeContactModal();
+        }
+      });
+
+      brandWebsite.addEventListener('blur', () => {
+        const normalized = normalizeWebsite(brandWebsite.value);
+        if (normalized) brandWebsite.value = normalized;
+      });
+
+      phone.addEventListener('input', () => {
+        phone.value = phone.value.replace(/[^\d+\s()-]/g, '');
+      });
+
+      loadCountryOptions();
+      loadCountryOptions(contactCountry, contactPhone, contactPhoneHelp);
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        errorBox.style.display = 'none';
+        const check = validate();
+        if (!check.ok) {
+          if (check.locked) {
+            renderLockedState(check.brandName, check.website);
+            return;
+          }
+          errorBox.textContent = 'Please fill all fields before running the audit.';
+          errorBox.style.display = 'block';
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Running Audit...';
+        results.style.display = 'none';
+        startProgress();
+
+        const normalizedWebsite = check.website;
+        const selectedCountry = getSelectedCountry();
+        const payload = {
+          brand_name: form.brand_name.value.trim(),
+          brand_website: normalizedWebsite,
+          email_id: form.email_id.value.trim(),
+          phone_country: selectedCountry.code,
+          phone_country_code: `+${selectedCountry.dial}`,
+          phone_number: `+${selectedCountry.dial} ${check.phoneDigits}`
+        };
+
+        try {
+          const res = await fetch('/api/audit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.message || data.error || 'Audit failed');
+          lockCompany(normalizedWebsite, payload.brand_name);
+          finishProgress();
+          setTimeout(() => renderResults(data), 650);
+        } catch (error) {
+          timers.forEach(clearTimeout);
+          progressCard.style.display = 'none';
+          errorBox.textContent = error.message || 'Something went wrong. Please try again.';
+          errorBox.style.display = 'block';
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Audit My Brand';
+        }
+      });
+
+      contactForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        contactError.style.display = 'none';
+        const check = validateContact();
+        if (!check.ok) {
+          contactError.textContent = 'Please fill the required contact details before sending your message.';
+          contactError.style.display = 'block';
+          return;
+        }
+
+        contactSubmitBtn.disabled = true;
+        contactSubmitBtn.textContent = 'Sending...';
+
+        const payload = {
+          form_type: 'contact',
+          brand_name: check.brandName,
+          brand_website: check.website,
+          email_id: check.email,
+          phone_country: check.country.code,
+          phone_country_code: `+${check.country.dial}`,
+          phone_number: `+${check.country.dial} ${check.phoneDigits}`,
+          additional_note: check.note
+        };
+
+        try {
+          const res = await fetch('/api/audit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.message || data.error || 'Contact submission failed');
+
+          contactForm.style.display = 'none';
+          contactSuccess.style.display = 'block';
+          contactSuccess.innerHTML = '<strong>Thank you for contacting us.</strong> We will get back to you soon!';
+          setTimeout(() => {
+            closeContactModal();
+            contactForm.reset();
+            contactForm.style.display = 'block';
+            contactSuccess.style.display = 'none';
+          }, 2200);
+        } catch (error) {
+          contactError.textContent = error.message || 'Something went wrong. Please try again.';
+          contactError.style.display = 'block';
+        } finally {
+          contactSubmitBtn.disabled = false;
+          contactSubmitBtn.textContent = 'Send Message';
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -4,12 +4,12 @@
 
 [[redirects]]
   from = "/"
-  to = "/home.html"
+  to = "/index.html"
   status = 200
 
 [[redirects]]
   from = "/audit"
-  to = "/index.html"
+  to = "/audit.html"
   status = 200
 
 [[redirects]]
