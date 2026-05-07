@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mnemix AI | ChatGPT Ads Readiness</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/marketing.css" />
+    <script defer src="/lead-form.js"></script>
+  </head>
+  <body>
+    <main class="site">
+      <header class="topbar">
+        <a class="brand" href="/"><span class="brand-mark">M</span><span>Mnemix AI</span></a>
+        <nav class="nav">
+          <a href="/">Home</a>
+          <a href="/audit">Audit</a>
+          <a href="/chatgpt-ads.html">ChatGPT Ads</a>
+          <a href="/services.html">Services</a>
+          <a href="/blog.html">Blog</a>
+          <a href="/contact.html">Contact</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <div>
+          <div class="pill">ChatGPT Ads readiness</div>
+          <h1>Be early for the ads era inside AI answers.</h1>
+          <p class="lead">
+            Google Ads captured intent. Meta Ads captured attention. ChatGPT Ads will capture the decision layer, where the user is already asking the model what to buy. The brands that prepare now will own the first wave of trust and clicks.
+          </p>
+          <div class="actions">
+            <a class="btn" href="#lead">Get Early Access</a>
+            <a class="btn secondary" href="/audit">Run Free Audit</a>
+          </div>
+        </div>
+        <div class="panel card">
+          <span class="tag">Why this matters</span>
+          <h3>Ads will move from feeds to conversations.</h3>
+          <p>We believe the next ad market is not just another placement. It is a sales pitch inside the answer itself, and that makes brand clarity more valuable than ever.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>How the ad era evolved</h2>
+            <p>A short story of how media keeps shifting toward the place where the decision is actually happening.</p>
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="panel timeline-item">
+            <div class="year">Google</div>
+            <div>
+              <h3>Search ads made intent legible.</h3>
+              <p>Users typed what they wanted. Brands paid to answer the query at the exact moment of demand.</p>
+            </div>
+          </div>
+          <div class="panel timeline-item">
+            <div class="year">Meta</div>
+            <div>
+              <h3>Social ads learned to manufacture demand.</h3>
+              <p>Creative, targeting, and retargeting let brands reach people before they were actively searching.</p>
+            </div>
+          </div>
+          <div class="panel timeline-item">
+            <div class="year">ChatGPT</div>
+            <div>
+              <h3>AI ads will sell inside the answer layer.</h3>
+              <p>When someone asks the model for the best option, the ad slot becomes a recommendation moment, which is why being first matters so much.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="grid-2">
+          <article class="panel card">
+            <span class="tag">Straight talk</span>
+            <h3>Yes, it is a click bait and a sales pitch.</h3>
+            <p>That is exactly why brands should prepare early. The brands with clean entity signals, strong proof, and clear positioning will be the ones the model can recommend confidently when the ad layer arrives.</p>
+          </article>
+          <article class="panel card">
+            <span class="tag">Our angle</span>
+            <h3>Mnemix makes you ready before the slot opens.</h3>
+            <p>We help brands fix the signals now: audit, authority, content, schema, comparisons, and the story that makes an AI platform understand why you matter.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="lead">
+        <form class="panel" id="leadForm" data-lead-type="contact" data-submit-label="Join the waitlist" data-success-text="<strong>Thank you for contacting us.</strong> We will get back to you soon!">
+          <div class="form-grid">
+            <div class="full">
+              <label for="brandName">Brand Name</label>
+              <input id="brandName" name="brand_name" autocomplete="organization" placeholder="Acme Labs" required />
+            </div>
+            <div class="full">
+              <label for="website">Brand Website</label>
+              <input id="website" name="brand_website" inputmode="url" autocomplete="url" placeholder="www.acme.com" required />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email_id" type="email" autocomplete="email" placeholder="you@company.com" required />
+            </div>
+            <div>
+              <label for="phoneCountry">Phone Number</label>
+              <div class="phone-wrap">
+                <select id="phoneCountry" name="phone_country" required></select>
+                <input id="phone" name="phone_number" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="9876543210" required />
+              </div>
+              <div class="field-help">Choose your country, then enter the exact number of digits for that country.</div>
+            </div>
+            <div class="full">
+              <label for="note">Additional Note</label>
+              <textarea id="note" name="additional_note" placeholder="Tell us what your brand is trying to achieve."></textarea>
+            </div>
+          </div>
+          <button class="btn" type="submit">Join the waitlist</button>
+          <div class="error" data-error></div>
+          <div class="success" data-success></div>
+        </form>
+      </section>
+
+      <footer class="footer">
+        <div>Mnemix AI</div>
+        <div>ChatGPT Ads readiness for brands that want to move first.</div>
+      </footer>
+    </main>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('leadForm');
+        const country = form.querySelector('[name="phone_country"]');
+        const phone = form.querySelector('[name="phone_number"]');
+        const helper = form.querySelector('.field-help');
+        if (window.MnemixLeadForm) {
+          window.MnemixLeadForm.fillCountries(country);
+          const selected = window.MnemixLeadForm.selectedCountry(country);
+          phone.placeholder = `Enter ${selected.minDigits === selected.maxDigits ? selected.minDigits : `${selected.minDigits}-${selected.maxDigits}`} digits`;
+          helper.textContent = `Choose your country, then enter the exact number of digits for ${selected.label}.`;
+          country.addEventListener('change', () => {
+            const sel = window.MnemixLeadForm.selectedCountry(country);
+            phone.placeholder = `Enter ${sel.minDigits === sel.maxDigits ? sel.minDigits : `${sel.minDigits}-${sel.maxDigits}`} digits`;
+            helper.textContent = `Choose your country, then enter the exact number of digits for ${sel.label}.`;
+          });
+        }
+        form.addEventListener('submit', (event) => {
+          event.preventDefault();
+          window.MnemixLeadForm.submitLead(form);
+        });
+      });
+    </script>
+  </body>
+</html>

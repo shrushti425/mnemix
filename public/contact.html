@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mnemix AI | Contact Us</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/marketing.css" />
+    <script defer src="/lead-form.js"></script>
+  </head>
+  <body>
+    <main class="site">
+      <header class="topbar">
+        <a class="brand" href="/"><span class="brand-mark">M</span><span>Mnemix AI</span></a>
+        <nav class="nav">
+          <a href="/">Home</a>
+          <a href="/audit">Audit</a>
+          <a href="/chatgpt-ads.html">ChatGPT Ads</a>
+          <a href="/services.html">Services</a>
+          <a href="/blog.html">Blog</a>
+          <a href="/contact.html">Contact</a>
+        </nav>
+      </header>
+
+      <section class="hero" style="grid-template-columns: 1fr;">
+        <div>
+          <div class="pill">Contact Mnemix AI</div>
+          <h1>Talk to us about GEO, audits, and AI-era growth.</h1>
+          <p class="lead">
+            If you want help with the audit, the ChatGPT Ads readiness work, or just want to talk through where your brand is headed, send us the basics and we’ll get back to you soon.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <form class="panel" id="leadForm" data-lead-type="contact" data-submit-label="Send Message">
+          <div class="form-grid">
+            <div class="full">
+              <label for="brandName">Brand Name</label>
+              <input id="brandName" name="brand_name" autocomplete="organization" placeholder="Acme Labs" required />
+            </div>
+            <div class="full">
+              <label for="website">Brand Website</label>
+              <input id="website" name="brand_website" inputmode="url" autocomplete="url" placeholder="www.acme.com" required />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email_id" type="email" autocomplete="email" placeholder="you@company.com" required />
+            </div>
+            <div>
+              <label for="phoneCountry">Phone Number</label>
+              <div class="phone-wrap">
+                <select id="phoneCountry" name="phone_country" required></select>
+                <input id="phone" name="phone_number" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="9876543210" required />
+              </div>
+              <div class="field-help">Choose your country, then enter the exact number of digits for that country.</div>
+            </div>
+            <div class="full">
+              <label for="note">Additional Note</label>
+              <textarea id="note" name="additional_note" placeholder="Tell us what you need."></textarea>
+            </div>
+          </div>
+          <button class="btn" type="submit">Send Message</button>
+          <div class="error" data-error></div>
+          <div class="success" data-success></div>
+        </form>
+      </section>
+
+      <footer class="footer">
+        <div>Mnemix AI</div>
+        <div>Thank you for reaching out.</div>
+      </footer>
+    </main>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('leadForm');
+        const country = form.querySelector('[name="phone_country"]');
+        const phone = form.querySelector('[name="phone_number"]');
+        const helper = form.querySelector('.field-help');
+        if (window.MnemixLeadForm) {
+          window.MnemixLeadForm.fillCountries(country);
+          const selected = window.MnemixLeadForm.selectedCountry(country);
+          phone.placeholder = `Enter ${selected.minDigits === selected.maxDigits ? selected.minDigits : `${selected.minDigits}-${selected.maxDigits}`} digits`;
+          helper.textContent = `Choose your country, then enter the exact number of digits for ${selected.label}.`;
+          country.addEventListener('change', () => {
+            const sel = window.MnemixLeadForm.selectedCountry(country);
+            phone.placeholder = `Enter ${sel.minDigits === sel.maxDigits ? sel.minDigits : `${sel.minDigits}-${sel.maxDigits}`} digits`;
+            helper.textContent = `Choose your country, then enter the exact number of digits for ${sel.label}.`;
+          });
+        }
+        form.addEventListener('submit', (event) => {
+          event.preventDefault();
+          window.MnemixLeadForm.submitLead(form);
+        });
+      });
+    </script>
+  </body>
+</html>
