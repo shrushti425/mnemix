@@ -199,6 +199,10 @@ h1 {
   gap: 14px;
 }
 
+.launch-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
 .grid-2 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -208,6 +212,19 @@ h1 {
 .card {
   padding: 18px;
   min-height: 100%;
+}
+
+.launch-card {
+  display: grid;
+  gap: 12px;
+}
+
+.launch-card h3 {
+  font-size: 20px;
+}
+
+.launch-card p {
+  margin: 0;
 }
 
 .card p {
@@ -360,6 +377,7 @@ input:focus, select:focus, textarea:focus {
 @media (max-width: 920px) {
   .hero,
   .grid-3,
+  .launch-grid,
   .grid-2 {
     grid-template-columns: 1fr;
   }
