@@ -1,8 +1,9 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, NavLink, Route, Routes, useLocation } from 'react-router-dom';
 import { Canvas } from '@react-three/fiber';
 import { Float, Sparkles } from '@react-three/drei';
+import { gsap } from 'gsap';
 import logo from './assets/mnemix-logo.jpg';
 import chatgptLogo from './assets/hero/normalized/chatgpt.png';
 import claudeLogo from './assets/hero/normalized/claude.png';
@@ -115,13 +116,7 @@ const BLOG_POSTS = [
   }
 ];
 
-const PLATFORM_WORDS = [
-  { text: 'Perplexity', accent: '#FFB547' },
-  { text: 'ChatGPT', accent: '#FF6B2B' },
-  { text: 'Google AI', accent: '#FFB547' },
-  { text: 'Claude', accent: '#FF6B2B' },
-  { text: 'Gemini', accent: '#FFB547' }
-];
+const PLATFORM_WORDS = ['ChatGPT', 'Claude', 'Gemini', 'Grok', 'Perplexity'];
 
 function normalizeWebsite(input) {
   let url = String(input || '').trim().toLowerCase();
@@ -247,49 +242,43 @@ function SectionHeading({ eyebrow, title, copy, action }) {
 }
 
 function RotatingWord() {
+  const ref = useRef(null);
   const [index, setIndex] = useState(0);
-  const [faded, setFaded] = useState(false);
 
   useEffect(() => {
-    let fadeTimer;
-    let swapTimer;
+    const el = ref.current;
+    if (!el) return undefined;
 
-    const schedule = () => {
-      fadeTimer = window.setTimeout(() => {
-        setFaded(true);
-        swapTimer = window.setTimeout(() => {
+    const interval = window.setInterval(() => {
+      gsap.to(el, {
+        opacity: 0,
+        y: 10,
+        duration: 0.22,
+        ease: 'power2.out',
+        onComplete: () => {
           setIndex((current) => (current + 1) % PLATFORM_WORDS.length);
-          setFaded(false);
-          schedule();
-        }, 220);
-      }, 2500);
-    };
+          gsap.fromTo(
+            el,
+            { opacity: 0, y: 10 },
+            { opacity: 1, y: 0, duration: 0.32, ease: 'power2.out' }
+          );
+        }
+      });
+    }, 1800);
 
-    schedule();
-
-    return () => {
-      window.clearTimeout(fadeTimer);
-      window.clearTimeout(swapTimer);
-    };
+    return () => window.clearInterval(interval);
   }, []);
 
-  const word = PLATFORM_WORDS[index];
-
   return (
-    <span
-      className={`rotating-word${faded ? ' fade-out' : ''}`}
-      style={{ '--rotating-accent': word.accent }}
-    >
-      {word.text}
+    <span ref={ref} className="rotating-word">
+      {PLATFORM_WORDS[index]}
     </span>
   );
 }
 function FloatingBadge({ className, label, src }) {
   return (
-    <div className={`hero-bubble ${className || ''}`}>
-      <div className="hero-bubble-shell">
-        <img className="hero-bubble-image" src={src} alt="" />
-      </div>
+    <div className={`hero-badge hero-logo-badge ${className || ''}`}>
+      <img className="hero-badge-image" src={src} alt="" />
       <span className="sr-only">{label}</span>
     </div>
   );
@@ -355,7 +344,7 @@ function HomePage() {
             <img src={logo} alt="" />
           </div>
           <div className="hero-copy-block">
-            <div className="hero-bubbles" aria-hidden="true">
+            <div className="hero-orbit" aria-hidden="true">
               <FloatingBadge className="badge-chatgpt" label="ChatGPT" src={chatgptLogo} />
               <FloatingBadge className="badge-gemini" label="Gemini" src={geminiLogo} />
               <FloatingBadge className="badge-perplexity" label="Perplexity" src={perplexityLogo} />
@@ -363,16 +352,13 @@ function HomePage() {
               <FloatingBadge className="badge-grok" label="Grok" src={grokLogo} />
               <FloatingBadge className="badge-claude" label="Claude" src={claudeLogo} />
             </div>
-            <h1 className="hero-title">
-              <span className="hero-title-line hero-title-line-primary">Get Organic Traffic From</span>
-              <span className="hero-title-line hero-title-line-accent">
-                <RotatingWord />
-              </span>
+            <h1 className="rotating-hero">
+              Get Organic Traffic From <RotatingWord />
             </h1>
             <p className="hero-catchline">Get discovered and recommended by ChatGPT, Google AI, Claude, Perplexity, and other AI search engines.</p>
             <div className="actions hero-actions-center">
               <Link className="btn" to="/audit">
-                Run Free AI Audit
+                Run free ai audit
               </Link>
               <Link className="btn secondary" to="/chatgpt-ads">
                 Join ChatGPT Ads Waitlist
