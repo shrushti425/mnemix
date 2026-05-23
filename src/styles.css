@@ -149,14 +149,16 @@ a { color: inherit; text-decoration: none; }
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  display: grid;
+  place-items: center;
 }
 
 .hero-copy-block {
   position: relative;
   z-index: 2;
-  max-width: 1080px;
+  width: min(100%, 1080px);
   margin: 0 auto;
-  padding-top: 140px;
+  padding-top: 132px;
   text-align: center;
 }
 
@@ -172,66 +174,72 @@ h1 {
   max-width: 10ch;
 }
 
-.hero-badges {
+.hero-orbit {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 1;
+  --orbit-radius: clamp(190px, 25vw, 300px);
+  --badge-size: clamp(64px, 6.8vw, 90px);
+  transform-origin: center center;
+  animation: orbitSpin 34s linear infinite;
 }
 
 .hero-badge {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--badge-size);
+  height: var(--badge-size);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(22, 18, 16, 0.68);
   overflow: hidden;
   backdrop-filter: blur(10px);
-  animation: floatBadge 5.5s ease-in-out infinite;
-  box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.025), 0 12px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.02), 0 12px 30px rgba(0, 0, 0, 0.15);
+  transform: translate(-50%, -50%) rotate(var(--angle, 0deg)) translateY(calc(var(--orbit-radius) * -1)) rotate(calc(var(--angle, 0deg) * -1));
 }
 
 .hero-logo-badge {
-  width: 96px;
-  height: 96px;
+  border-radius: 50%;
 }
 
 .hero-badge-image {
-  width: 100%;
-  height: 100%;
+  width: 56%;
+  height: 56%;
   object-fit: contain;
   display: block;
-  padding: 12px;
 }
 
 .hero-watermark {
   position: absolute;
-  inset: 12px 4% 2% 8%;
+  inset: 2% 2% -2% 2%;
   display: grid;
   place-items: center;
-  opacity: 0.04;
+  opacity: 0.03;
   filter: blur(0.4px);
-  transform: scale(1.18);
+  transform: scale(1.38);
   z-index: 0;
 }
 
 .hero-watermark img {
-  width: min(100%, 1080px);
+  width: min(100%, 1360px);
   height: auto;
   object-fit: contain;
   filter: saturate(0.85) contrast(1.04);
 }
 
-.badge-chatgpt { top: 5%; left: 46%; }
-.badge-gemini { top: 20%; left: 73%; }
-.badge-claude { top: 47%; left: 79%; }
-.badge-grok { top: 76%; left: 72%; }
-.badge-perplexity { top: 84%; left: 31%; }
-.badge-copilot { top: 58%; left: 17%; }
+.badge-chatgpt { --angle: 0deg; }
+.badge-gemini { --angle: 60deg; }
+.badge-claude { --angle: 120deg; }
+.badge-grok { --angle: 180deg; }
+.badge-perplexity { --angle: 240deg; }
+.badge-copilot { --angle: 300deg; }
 
-.hero-primary > :not(.hero-watermark):not(.hero-badges) {
+.hero-primary > :not(.hero-watermark):not(.hero-orbit) {
   position: relative;
   z-index: 2;
 }
@@ -258,9 +266,9 @@ h1 {
   color: var(--text);
   font-family: "Inter", "DM Sans", sans-serif;
   font-weight: 500;
-  font-size: clamp(20px, 2.1vw, 31px);
-  line-height: 1.38;
-  max-width: 31ch;
+  font-size: clamp(15px, 1.2vw, 19px);
+  line-height: 1.46;
+  max-width: 40ch;
 }
 
 @keyframes floatBadge {
@@ -269,6 +277,15 @@ h1 {
   }
   50% {
     transform: translateY(-6px);
+  }
+}
+
+@keyframes orbitSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 
@@ -1254,15 +1271,13 @@ input:focus, select:focus, textarea:focus {
   }
 
   .hero-copy-block {
-    padding-top: 116px;
+    padding-top: 122px;
   }
 
-  .badge-chatgpt { left: 49%; top: 6%; }
-  .badge-gemini { left: 75%; top: 18%; }
-  .badge-claude { left: 80%; top: 44%; }
-  .badge-grok { top: 74%; left: 73%; }
-  .badge-perplexity { top: 84%; left: 27%; }
-  .badge-copilot { top: 59%; left: 12%; }
+  .hero-orbit {
+    --orbit-radius: clamp(150px, 22vw, 210px);
+    --badge-size: clamp(58px, 7vw, 76px);
+  }
 }
 
 .spacer {
@@ -1311,29 +1326,22 @@ input:focus, select:focus, textarea:focus {
   }
 
   .hero-catchline {
-    max-width: 14ch;
+    max-width: 30ch;
   }
 
   .hero-primary {
-    min-height: 520px;
+    min-height: 530px;
   }
 
   .hero-watermark {
-    inset: 26px -10% 0;
-    opacity: 0.035;
+    inset: 12px -8% -4%;
+    opacity: 0.026;
   }
 
-  .hero-logo-badge {
-    width: 66px;
-    height: 66px;
+  .hero-orbit {
+    --orbit-radius: 136px;
+    --badge-size: 54px;
   }
-
-  .badge-chatgpt { left: 48%; top: 5%; }
-  .badge-gemini { left: 76%; top: 18%; }
-  .badge-claude { left: 79%; top: 42%; }
-  .badge-grok { left: 74%; top: 72%; }
-  .badge-perplexity { top: 77%; left: 21%; }
-  .badge-copilot { top: 58%; left: 11%; }
 
   .hero-copy-block {
     padding-top: 104px;

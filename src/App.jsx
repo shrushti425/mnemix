@@ -5,12 +5,12 @@ import { Canvas } from '@react-three/fiber';
 import { Float, Sparkles } from '@react-three/drei';
 import { gsap } from 'gsap';
 import logo from './assets/mnemix-logo.jpg';
-import chatgptLogo from './assets/hero/chatgpt.png';
-import claudeLogo from './assets/hero/claude.png';
-import copilotLogo from './assets/hero/copilot.png';
-import geminiLogo from './assets/hero/gemini.png';
-import grokLogo from './assets/hero/grok.png';
-import perplexityLogo from './assets/hero/perplexity.png';
+import chatgptLogo from './assets/hero/normalized/chatgpt.png';
+import claudeLogo from './assets/hero/normalized/claude.png';
+import copilotLogo from './assets/hero/normalized/copilot.png';
+import geminiLogo from './assets/hero/normalized/gemini.png';
+import grokLogo from './assets/hero/normalized/grok.png';
+import perplexityLogo from './assets/hero/normalized/perplexity.png';
 
 const AUDIT_LOCK_PREFIX = 'mnemix-audit-lock:';
 const PHONE_RULES = {
@@ -343,22 +343,22 @@ function HomePage() {
           <div className="hero-watermark" aria-hidden="true">
             <img src={logo} alt="" />
           </div>
-          <div className="hero-badges hero-floating-badges" aria-hidden="true">
-            <FloatingBadge className="badge-chatgpt" label="ChatGPT" src={chatgptLogo} />
-            <FloatingBadge className="badge-gemini" label="Gemini" src={geminiLogo} />
-            <FloatingBadge className="badge-perplexity" label="Perplexity" src={perplexityLogo} />
-            <FloatingBadge className="badge-copilot" label="Microsoft Copilot" src={copilotLogo} />
-            <FloatingBadge className="badge-grok" label="Grok" src={grokLogo} />
-            <FloatingBadge className="badge-claude" label="Claude" src={claudeLogo} />
-          </div>
           <div className="hero-copy-block">
+            <div className="hero-orbit" aria-hidden="true">
+              <FloatingBadge className="badge-chatgpt" label="ChatGPT" src={chatgptLogo} />
+              <FloatingBadge className="badge-gemini" label="Gemini" src={geminiLogo} />
+              <FloatingBadge className="badge-perplexity" label="Perplexity" src={perplexityLogo} />
+              <FloatingBadge className="badge-copilot" label="Microsoft Copilot" src={copilotLogo} />
+              <FloatingBadge className="badge-grok" label="Grok" src={grokLogo} />
+              <FloatingBadge className="badge-claude" label="Claude" src={claudeLogo} />
+            </div>
             <h1 className="rotating-hero">
               Get Organic Traffic From <RotatingWord />
             </h1>
             <p className="hero-catchline">Get discovered and recommended by ChatGPT, Google AI, Claude, Perplexity, and other AI search engines.</p>
             <div className="actions hero-actions-center">
               <Link className="btn" to="/audit">
-                Run Free AI Audit
+                Run free ai audit
               </Link>
               <Link className="btn secondary" to="/chatgpt-ads">
                 Join ChatGPT Ads Waitlist
