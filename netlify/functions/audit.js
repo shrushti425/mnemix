@@ -7,7 +7,9 @@ const corsHeaders = {
 
 const OPENAI_URL = 'https://api.openai.com/v1/chat/completions';
 const MODEL = 'gpt-4o-mini';
-const MAX_CONTEXT_CHARS = 12000;
+const MAX_CONTEXT_CHARS = 8000;
+const SCRAPE_TIMEOUT_MS = 8000;
+const OPENAI_TIMEOUT_MS = 20000;
 const PHONE_RULES = {
   IN: { dial: '91', minDigits: 10, maxDigits: 10 },
   US: { dial: '1', minDigits: 10, maxDigits: 10 },
@@ -108,7 +110,7 @@ async function fetchWithTimeout(url, options = {}, timeoutMs = 15000) {
 async function scrapeWebsite(url) {
   try {
     const scrapeUrl = `https://r.jina.ai/${url}`;
-    const res = await fetchWithTimeout(scrapeUrl, { headers: { Accept: 'text/plain' } }, 15000);
+    const res = await fetchWithTimeout(scrapeUrl, { headers: { Accept: 'text/plain' } }, SCRAPE_TIMEOUT_MS);
     if (!res.ok) return { scrapeFailed: true, text: '' };
     const text = await res.text();
     return { scrapeFailed: false, text: text.slice(0, MAX_CONTEXT_CHARS) };
@@ -138,7 +140,7 @@ async function callOpenAI(messages, temperature = 0.2) {
         messages
       })
     },
-    25000
+    OPENAI_TIMEOUT_MS
   );
 
   const raw = await res.text();
