@@ -617,6 +617,9 @@ function AuditPage() {
       setError('Please enter a valid website.');
       return;
     }
+    if (website !== form.brand_website) {
+      setForm((prev) => ({ ...prev, brand_website: website }));
+    }
     if (!validateEmail(form.email_id)) {
       setError('Enter valid email id');
       return;
@@ -967,6 +970,9 @@ function LeadCaptureForm({ buttonLabel = 'Send Message', successMessage = 'Thank
     if (!website) {
       setError('Please enter a valid website.');
       return;
+    }
+    if (website !== form.brand_website) {
+      setForm((prev) => ({ ...prev, brand_website: website }));
     }
     if (!validateEmail(form.email_id)) {
       setError('Enter valid email id');

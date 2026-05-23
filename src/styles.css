@@ -585,8 +585,9 @@ input:focus, select:focus, textarea:focus {
 
 .phone-wrap {
   display: grid;
-  grid-template-columns: minmax(170px, 0.42fr) minmax(0, 1fr);
+  grid-template-columns: minmax(148px, 0.36fr) minmax(0, 1fr);
   gap: 10px;
+  align-items: stretch;
 }
 
 .form-grid {
@@ -961,13 +962,15 @@ input:focus, select:focus, textarea:focus {
 
 .phone-wrap {
   display: grid;
-  grid-template-columns: minmax(170px, 0.42fr) minmax(0, 1fr);
+  grid-template-columns: minmax(148px, 0.36fr) minmax(0, 1fr);
   gap: 10px;
 }
 
 .phone-wrap select,
 .phone-wrap input {
   min-width: 0;
+  width: 100%;
+  min-inline-size: 0;
 }
 
 .phone-wrap select {
