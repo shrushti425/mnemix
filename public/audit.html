@@ -66,6 +66,28 @@
         display: flex;
         align-items: center;
         gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .site-nav {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .site-nav a {
+        color: var(--text);
+        text-decoration: none;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+      }
+
+      .site-nav a:hover {
+        border-color: rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.04);
       }
 
       .brand-mark {
@@ -285,6 +307,63 @@
         justify-content: center;
         min-height: 42px;
         padding: 0 14px;
+      }
+
+      .hero-banner {
+        display: inline-block;
+        margin: 0 0 18px;
+        max-width: 720px;
+        padding: 10px 14px;
+        border: 1px solid rgba(255, 181, 71, 0.32);
+        border-radius: 16px;
+        background: rgba(255, 181, 71, 0.08);
+        color: var(--gold);
+        font-family: "Syne", sans-serif;
+        font-size: 16px;
+        line-height: 1.35;
+      }
+
+      .hook-note {
+        margin: 14px 0 0;
+        color: #f2d7be;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .response-note {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .next-steps {
+        margin-top: 18px;
+        display: grid;
+        gap: 12px;
+      }
+
+      .step-card {
+        border: 1px solid var(--line);
+        background: rgba(24, 24, 24, 0.74);
+        backdrop-filter: blur(18px);
+        border-radius: var(--radius);
+        padding: 16px;
+      }
+
+      .step-card strong {
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .site-footer {
+        margin-top: 28px;
+        padding: 20px 0 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        color: var(--muted);
       }
 
       .submit-btn {
@@ -861,18 +940,26 @@
           <span>Mnemix AI</span>
         </div>
         <div class="header-actions">
-          <a class="secondary-btn header-link" href="/">Back to Home</a>
-          <div class="agency-pill">GEO agency free audit</div>
-          <button class="secondary-btn header-contact" id="contactOpenBtn" type="button">Contact Us</button>
+          <nav class="site-nav">
+            <a href="/">Home</a>
+            <a href="/audit">Audit</a>
+            <a href="/chatgpt-ads.html">ChatGPT Ads</a>
+            <a href="/services.html">Services</a>
+            <a href="/blog.html">Blog</a>
+            <a href="/contact.html">Contact</a>
+          </nav>
+          <a class="secondary-btn header-link" href="#auditForm">Run Free Audit</a>
         </div>
       </header>
 
       <section class="shell">
         <div>
+          <div class="hero-banner">Your brand has 60 seconds to make sense to an AI. Does it?</div>
           <h1>Find out how visible your brand is inside AI answers.</h1>
           <p class="hero-copy">
             Mnemix AI audits your brand across entity clarity, recommendation readiness, and authority signals so you can see what ChatGPT-style engines are likely to understand, miss, or misrepresent.
           </p>
+          <p class="hook-note">Your free audit includes one priority fix. The full paid report goes deeper.</p>
           <div class="trust-row">
             <div><strong>Entity clarity</strong>Brand, category, website, and positioning signals.</div>
             <div><strong>GEO scoring</strong>Brutally honest visibility bands from 0 to 100.</div>
@@ -893,6 +980,7 @@
         <form class="form-card" id="auditForm" novalidate>
           <h2>Run free audit</h2>
           <p>Get a quick GEO visibility snapshot for your brand.</p>
+          <p class="response-note">We reply within 24 hours.</p>
 
           <label for="brandName">Brand Name</label>
           <input id="brandName" name="brand_name" autocomplete="organization" placeholder="Acme Labs" required />
@@ -916,56 +1004,30 @@
         </form>
       </section>
 
-      <section class="results" id="results"></section>
-    </main>
-
-    <div class="modal" id="contactModal" aria-hidden="true">
-      <div class="modal-backdrop" id="contactBackdrop"></div>
-      <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
-        <div class="modal-head">
-          <div>
-            <h3 id="contactTitle">Contact us</h3>
-            <p>Want to know more? Send us the basics and we’ll get back to you soon.</p>
-          </div>
-          <button class="icon-btn" id="contactCloseBtn" type="button" aria-label="Close contact form">×</button>
+      <section class="next-steps">
+        <div class="step-card">
+          <strong>1. We scrape and score your brand across AI platforms</strong>
+          We check the public signals AI systems can see, then translate them into a GEO score.
         </div>
+        <div class="step-card">
+          <strong>2. You get a GEO visibility report with a score out of 100</strong>
+          The score shows where AI understands you, where it hesitates, and where it gets you wrong.
+        </div>
+        <div class="step-card">
+          <strong>3. One priority fix delivered, plus an optional path to the full paid strategy</strong>
+          The free audit gives you one move to make now. The full report goes deeper if you want the complete roadmap.
+        </div>
+      </section>
 
-        <form id="contactForm" novalidate>
-          <div class="modal-grid">
-            <div class="full">
-              <label for="contactBrand">Brand Name</label>
-              <input id="contactBrand" name="brand_name" autocomplete="organization" placeholder="Acme Labs" required />
-            </div>
-            <div class="full">
-              <label for="contactWebsite">Brand Website</label>
-              <input id="contactWebsite" name="brand_website" inputmode="url" autocomplete="url" placeholder="www.acme.com" required />
-            </div>
-            <div>
-              <label for="contactEmail">Email</label>
-              <input id="contactEmail" name="email_id" type="email" autocomplete="email" placeholder="you@company.com" required />
-            </div>
-            <div>
-              <label for="contactPhone">Phone Number</label>
-              <div class="phone-wrap">
-                <select id="contactCountry" name="phone_country" required></select>
-                <input id="contactPhone" name="phone_number" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="9876543210" required />
-              </div>
-              <div class="field-help" id="contactPhoneHelp">Choose your country, then enter the exact number of digits for that country.</div>
-            </div>
-            <div class="full">
-              <label for="contactNote">Additional Note</label>
-              <textarea id="contactNote" name="additional_note" placeholder="Tell us what you’re looking for."></textarea>
-            </div>
-          </div>
-          <button class="submit-btn" id="contactSubmitBtn" type="submit">Send Message</button>
-          <div class="error" id="contactError"></div>
-          <div class="modal-success" id="contactSuccess">
-            <strong>Thank you for contacting us.</strong>
-            We will get back to you soon!
-          </div>
-        </form>
-      </div>
-    </div>
+      <section class="results" id="results"></section>
+      <footer class="site-footer">
+        <div>Mnemix AI</div>
+        <div class="footer-links">
+          <a href="https://x.com/MnemixAI" target="_blank" rel="noreferrer">X</a>
+          <a href="https://www.linkedin.com/company/mnemix-ai/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </footer>
+    </main>
 
     <script>
       const form = document.getElementById('auditForm');
@@ -980,21 +1042,6 @@
       const phone = document.getElementById('phone');
       const country = document.getElementById('country');
       const phoneHelp = document.getElementById('phoneHelp');
-      const contactOpenBtn = document.getElementById('contactOpenBtn');
-      const contactModal = document.getElementById('contactModal');
-      const contactBackdrop = document.getElementById('contactBackdrop');
-      const contactCloseBtn = document.getElementById('contactCloseBtn');
-      const contactForm = document.getElementById('contactForm');
-      const contactSubmitBtn = document.getElementById('contactSubmitBtn');
-      const contactError = document.getElementById('contactError');
-      const contactSuccess = document.getElementById('contactSuccess');
-      const contactBrand = document.getElementById('contactBrand');
-      const contactWebsite = document.getElementById('contactWebsite');
-      const contactEmail = document.getElementById('contactEmail');
-      const contactCountry = document.getElementById('contactCountry');
-      const contactPhone = document.getElementById('contactPhone');
-      const contactPhoneHelp = document.getElementById('contactPhoneHelp');
-      const contactNote = document.getElementById('contactNote');
       let timers = [];
       const AUDIT_LOCK_PREFIX = 'mnemix-audit-lock:';
 
@@ -1324,7 +1371,7 @@
                 If this wasn’t you, or you want a quick conversation before moving ahead, contact us and we’ll help.
               </div>
               <div class="cta-row" style="margin-top: 14px;">
-                <button type="button" class="secondary-btn" onclick="document.getElementById('contactOpenBtn').click()">Contact Us</button>
+                <a class="secondary-btn header-link" href="/contact.html">Contact Us</a>
               </div>
             </div>
 
@@ -1335,67 +1382,6 @@
         `;
         results.style.display = 'block';
         results.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-
-      function openContactModal() {
-        contactForm.reset();
-        contactError.style.display = 'none';
-        contactSuccess.style.display = 'none';
-        contactForm.style.display = 'block';
-        contactSubmitBtn.disabled = false;
-        contactSubmitBtn.textContent = 'Send Message';
-
-        contactBrand.value = form.brand_name.value.trim();
-        contactWebsite.value = form.brand_website.value.trim();
-        contactEmail.value = form.email_id.value.trim();
-        contactCountry.value = country.value || 'IN';
-        contactPhone.value = form.phone_number.value.trim();
-        contactNote.value = '';
-        updatePhoneHint(contactCountry, contactPhone, contactPhoneHelp);
-
-        contactModal.classList.add('open');
-        contactModal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeContactModal() {
-        contactModal.classList.remove('open');
-        contactModal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-      }
-
-      function validateContact() {
-        let ok = true;
-        const brandValue = contactBrand.value.trim();
-        const websiteValue = contactWebsite.value.trim();
-        const emailValue = contactEmail.value.trim();
-        const phoneValue = contactPhone.value.trim();
-
-        setFieldInvalid(contactBrand, !brandValue);
-        if (!brandValue) ok = false;
-
-        const normalizedWebsite = normalizeWebsite(websiteValue);
-        setFieldInvalid(contactWebsite, !normalizedWebsite);
-        if (!normalizedWebsite) ok = false;
-
-        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue);
-        setFieldInvalid(contactEmail, !emailOk);
-        if (!emailOk) ok = false;
-
-        const phoneCheck = digitsMatchCountry(phoneValue, contactCountry);
-        setFieldInvalid(contactPhone, !phoneCheck.valid);
-        setFieldInvalid(contactCountry, !contactCountry.value);
-        if (!phoneCheck.valid || !contactCountry.value) ok = false;
-
-        return {
-          ok,
-          brandName: brandValue,
-          website: normalizedWebsite,
-          email: emailValue,
-          phoneDigits: phoneCheck.digits,
-          note: contactNote.value.trim(),
-          country: getSelectedCountry(contactCountry)
-        };
       }
 
       function pillarCard(title, score, max, short, note, reasoning) {
@@ -1416,25 +1402,8 @@
         if (event.target.matches('input, select')) event.target.classList.remove('invalid');
       });
 
-      contactForm.addEventListener('input', (event) => {
-        if (event.target.matches('input, select, textarea')) event.target.classList.remove('invalid');
-      });
-
       country.addEventListener('change', updatePhoneHint);
       country.addEventListener('change', () => country.classList.remove('invalid'));
-      contactCountry.addEventListener('change', () => {
-        updatePhoneHint(contactCountry, contactPhone, contactPhoneHelp);
-        contactCountry.classList.remove('invalid');
-      });
-
-      contactOpenBtn.addEventListener('click', openContactModal);
-      contactCloseBtn.addEventListener('click', closeContactModal);
-      contactBackdrop.addEventListener('click', closeContactModal);
-      document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && contactModal.classList.contains('open')) {
-          closeContactModal();
-        }
-      });
 
       brandWebsite.addEventListener('blur', () => {
         const normalized = normalizeWebsite(brandWebsite.value);
@@ -1446,7 +1415,6 @@
       });
 
       loadCountryOptions();
-      loadCountryOptions(contactCountry, contactPhone, contactPhoneHelp);
 
       form.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -1497,57 +1465,6 @@
         } finally {
           submitBtn.disabled = false;
           submitBtn.textContent = 'Audit My Brand';
-        }
-      });
-
-      contactForm.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        contactError.style.display = 'none';
-        const check = validateContact();
-        if (!check.ok) {
-          contactError.textContent = 'Please fill the required contact details before sending your message.';
-          contactError.style.display = 'block';
-          return;
-        }
-
-        contactSubmitBtn.disabled = true;
-        contactSubmitBtn.textContent = 'Sending...';
-
-        const payload = {
-          form_type: 'contact',
-          brand_name: check.brandName,
-          brand_website: check.website,
-          email_id: check.email,
-          phone_country: check.country.code,
-          phone_country_code: `+${check.country.dial}`,
-          phone_number: `+${check.country.dial} ${check.phoneDigits}`,
-          additional_note: check.note
-        };
-
-        try {
-          const res = await fetch('/api/audit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-          const data = await res.json();
-          if (!res.ok) throw new Error(data.message || data.error || 'Contact submission failed');
-
-          contactForm.style.display = 'none';
-          contactSuccess.style.display = 'block';
-          contactSuccess.innerHTML = '<strong>Thank you for contacting us.</strong> We will get back to you soon!';
-          setTimeout(() => {
-            closeContactModal();
-            contactForm.reset();
-            contactForm.style.display = 'block';
-            contactSuccess.style.display = 'none';
-          }, 2200);
-        } catch (error) {
-          contactError.textContent = error.message || 'Something went wrong. Please try again.';
-          contactError.style.display = 'block';
-        } finally {
-          contactSubmitBtn.disabled = false;
-          contactSubmitBtn.textContent = 'Send Message';
         }
       });
     </script>

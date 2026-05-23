@@ -13,26 +13,40 @@
     <main class="site">
       <header class="topbar">
         <a class="brand" href="/"><span class="brand-mark">M</span><span>Mnemix AI</span></a>
-        <nav class="nav">
-          <a href="/">Home</a>
-          <a href="/audit">Audit</a>
-          <a href="/chatgpt-ads.html">ChatGPT Ads</a>
-          <a href="/services.html">Services</a>
-          <a href="/blog.html">Blog</a>
-          <a href="/contact.html">Contact</a>
-        </nav>
+        <div class="topbar-actions">
+          <nav class="nav">
+            <a href="/">Home</a>
+            <a href="/audit">Audit</a>
+            <a href="/chatgpt-ads.html">ChatGPT Ads</a>
+            <a href="/services.html">Services</a>
+            <a href="/blog.html">Blog</a>
+            <a href="/contact.html">Contact</a>
+          </nav>
+          <a class="btn nav-cta" href="/audit">Run Free Audit</a>
+        </div>
       </header>
 
       <section class="hero">
         <div>
           <div class="pill">GEO agency for AI-era growth</div>
-          <h1>Own the answers brands will be judged by.</h1>
+          <div class="hero-badges" aria-hidden="true">
+            <span class="hero-badge badge-chatgpt">ChatGPT</span>
+            <span class="hero-badge badge-claude">Claude</span>
+            <span class="hero-badge badge-gemini">Gemini</span>
+            <span class="hero-badge badge-grok">Grok</span>
+            <span class="hero-badge badge-perplexity">Perplexity</span>
+          </div>
+          <h1 class="rotating-hero">
+            Get discovered by
+            <span class="rotating-word" id="rotatingWord">ChatGPT</span>
+          </h1>
+          <p class="hero-catchline">The next step of marketing is here. You’ll need us to stay on top of AI answers.</p>
           <p class="lead">
             Mnemix AI helps brands show up clearly inside ChatGPT-style answers, AI recommendations, and the next wave of ad inventory. Start with a free visibility audit, then build the entity, authority, and demand layers that make AI choose you first.
           </p>
           <div class="actions">
-            <a class="btn" href="/audit">Run Free Audit</a>
-            <a class="btn secondary" href="/chatgpt-ads.html">Explore ChatGPT Ads</a>
+            <a class="btn" href="/audit">Get Free AI Audit</a>
+            <a class="btn secondary" href="/chatgpt-ads.html">Join ChatGPT Ads Waitlist</a>
           </div>
         </div>
         <div class="stats">
@@ -52,38 +66,23 @@
       </section>
 
       <section class="section">
-        <div class="section-head">
-          <div>
-            <h2>Start here</h2>
-            <p>Everything on the site is live. These cards take you straight to the parts people usually want first.</p>
+        <div class="panel card">
+          <div class="section-head" style="margin-bottom: 10px;">
+            <div>
+              <h2>Social proof</h2>
+              <p>What brands usually want to see first before they decide if GEO matters enough to fund.</p>
+            </div>
           </div>
-        </div>
-        <div class="grid-3 launch-grid">
-          <a class="panel card launch-card" href="/audit">
-            <span class="tag">Audit</span>
-            <h3>Free GEO Audit</h3>
-            <p>See how visible your brand is inside AI answers and where the biggest gaps sit.</p>
-          </a>
-          <a class="panel card launch-card" href="/chatgpt-ads.html">
-            <span class="tag">Offer</span>
-            <h3>ChatGPT Ads</h3>
-            <p>Early access positioning for the ad layer that will live inside AI conversations.</p>
-          </a>
-          <a class="panel card launch-card" href="/services.html">
-            <span class="tag">Services</span>
-            <h3>What we do</h3>
-            <p>Audit, strategy, and readiness work for brands that want to show up better in AI.</p>
-          </a>
-          <a class="panel card launch-card" href="/blog.html">
-            <span class="tag">Blog</span>
-            <h3>Read the thinking</h3>
-            <p>Short, direct posts about GEO, discovery, and the AI answer layer.</p>
-          </a>
-          <a class="panel card launch-card" href="/contact.html">
-            <span class="tag">Contact</span>
-            <h3>Talk to us</h3>
-            <p>Send the basics and we’ll get back to you soon with the right next step.</p>
-          </a>
+          <!-- [PLACEHOLDER] Replace with real logos when partner approvals are available. -->
+          <div class="panel card" style="margin-top: 0; padding: 16px;">
+            <div class="placeholder-copy">[PLACEHOLDER] LOGO STRIP: Brand logos here</div>
+          </div>
+          <div class="panel card" style="margin-top: 14px;">
+            <!-- [PLACEHOLDER] Replace this testimonial with a real client quote when approved. -->
+            <span class="tag">Testimonial</span>
+            <h3>“Mnemix made the AI visibility gaps painfully clear, then gave us a path to fix them.”</h3>
+            <p class="placeholder-copy">[PLACEHOLDER] This testimonial is a stand-in until we have a published client quote.</p>
+          </div>
         </div>
       </section>
 
@@ -97,18 +96,18 @@
         <div class="grid-3">
           <article class="panel card">
             <span class="tag">Audit</span>
-            <h3>GEO Visibility Audit</h3>
-            <p>See how clearly AI understands the brand, what category it owns, and where the authority gaps are.</p>
+            <h3>GEO audits delivered in 48 hours</h3>
+            <p>Get a fast read on how AI systems understand your brand, where the signal gaps are, and what they’re likely to say back to users.</p>
           </article>
           <article class="panel card">
             <span class="tag">Strategy</span>
-            <h3>Entity and content system</h3>
-            <p>We shape the brand story, proof points, schema, and comparison pages that make AI answers less random and more favorable.</p>
+            <h3>Entity signals built to survive AI model updates</h3>
+            <p>We shape the brand story, proof points, schema, and comparison pages so your visibility doesn’t fall apart every time the models shift.</p>
           </article>
           <article class="panel card">
             <span class="tag">Growth</span>
-            <h3>ChatGPT Ads readiness</h3>
-            <p>Get in line early for the ad era that will sit inside AI conversations, not just search and social feeds.</p>
+            <h3>First-mover positioning for the ChatGPT Ads era</h3>
+            <p>We help you prepare for the ad layer inside AI conversations before category leaders lock in the early advantage.</p>
           </article>
         </div>
       </section>
@@ -155,40 +154,70 @@
           <a class="btn secondary" href="/blog.html">View all posts</a>
         </div>
         <div class="grid-3">
-          <article class="panel card blog-card">
-            <span class="meta">Blog</span>
+          <!-- [PLACEHOLDER] Replace with live post URLs once the blog goes live. -->
+          <article class="panel card blog-card card-link">
+            <span class="tag">GEO</span>
             <h3>Why AI visibility is the new homepage</h3>
-            <p>When customers ask models instead of search engines, your brand story has to survive the answer layer.</p>
+            <p>When customers ask models instead of search engines, your brand story has to survive the answer layer. The site that the model cites becomes the first impression, not the last.</p>
+            <div class="post-meta"><span>May 2026</span><span>5 min read</span></div>
           </article>
-          <article class="panel card blog-card">
-            <span class="meta">Blog</span>
+          <article class="panel card blog-card card-link">
+            <span class="tag">Strategy</span>
             <h3>What makes a brand recommendation-worthy</h3>
-            <p>AI doesn't just need to know who you are, it needs proof that recommending you makes sense.</p>
+            <p>AI does not just need to know who you are. It needs proof that recommending you is sensible, safe, and easy to explain to the user.</p>
+            <div class="post-meta"><span>May 2026</span><span>4 min read</span></div>
           </article>
-          <article class="panel card blog-card">
-            <span class="meta">Blog</span>
+          <article class="panel card blog-card card-link">
+            <span class="tag">Ads</span>
             <h3>Preparing for ChatGPT Ads</h3>
-            <p>The brands that build the right entity and conversion signals now will move faster when the slot becomes real.</p>
+            <p>The brands that build the right entity and conversion signals now will move faster when the slot becomes real. Early structure beats late scrambling.</p>
+            <div class="post-meta"><span>May 2026</span><span>6 min read</span></div>
           </article>
         </div>
       </section>
 
       <section class="section">
         <div class="panel card">
-          <h2>Ready to see where your brand stands?</h2>
+          <h2>Get your free GEO audit in 24 hours.</h2>
           <p>Start with the free audit. If you want the next step, we’ll help shape the AI-era positioning and the ads strategy around it.</p>
           <div class="actions">
-          <a class="btn" href="/audit">Run Free Audit</a>
-          <a class="btn secondary" href="/services.html">View Services</a>
-          <a class="btn secondary" href="/contact.html">Contact Us</a>
-        </div>
+            <a class="btn" href="/audit">Run Free Audit</a>
+            <a class="btn secondary" href="/services.html">View Services</a>
+            <a class="btn secondary" href="/contact.html">Contact Us</a>
+          </div>
         </div>
       </section>
 
       <footer class="footer">
         <div>Mnemix AI</div>
-        <div>GEO agency for AI search, answer engines, and what comes next.</div>
+        <div class="footer-links">
+          <span>GEO agency for AI search, answer engines, and what comes next.</span>
+          <!-- [PLACEHOLDER] Replace these social URLs with live brand accounts when ready. -->
+          <a href="https://x.com/MnemixAI" target="_blank" rel="noreferrer">X</a>
+          <a href="https://www.linkedin.com/company/mnemix-ai/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
       </footer>
     </main>
+    <script>
+      const rotatingWord = document.getElementById('rotatingWord');
+      const rotatingWords = ['ChatGPT', 'Claude', 'Gemini', 'Grok', 'Perplexity'];
+      let rotatingIndex = 0;
+
+      if (rotatingWord) {
+        setInterval(() => {
+          rotatingWord.classList.add('fade-out');
+          setTimeout(() => {
+            rotatingIndex = (rotatingIndex + 1) % rotatingWords.length;
+            rotatingWord.textContent = rotatingWords[rotatingIndex];
+            rotatingWord.classList.remove('fade-out');
+          }, 220);
+        }, 1800);
+      }
+
+      const heroBadges = document.querySelectorAll('.hero-badge');
+      heroBadges.forEach((badge, index) => {
+        badge.style.animationDelay = `${index * 0.28}s`;
+      });
+    </script>
   </body>
 </html>
