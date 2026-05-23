@@ -5,6 +5,12 @@ import { Canvas } from '@react-three/fiber';
 import { Float, Sparkles } from '@react-three/drei';
 import { gsap } from 'gsap';
 import logo from './assets/mnemix-logo.jpg';
+import chatgptLogo from './assets/hero/chatgpt.png';
+import claudeLogo from './assets/hero/claude.png';
+import copilotLogo from './assets/hero/copilot.png';
+import geminiLogo from './assets/hero/gemini.png';
+import grokLogo from './assets/hero/grok.png';
+import perplexityLogo from './assets/hero/perplexity.png';
 
 const AUDIT_LOCK_PREFIX = 'mnemix-audit-lock:';
 const PHONE_RULES = {
@@ -269,115 +275,10 @@ function RotatingWord() {
     </span>
   );
 }
-
-function ChatGPTGlyph() {
-  return (
-    <svg viewBox="0 0 48 48" aria-hidden="true">
-      <g fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" opacity="0.95">
-        <ellipse cx="24" cy="24" rx="9.5" ry="15.2" transform="rotate(0 24 24)" />
-        <ellipse cx="24" cy="24" rx="9.5" ry="15.2" transform="rotate(60 24 24)" />
-        <ellipse cx="24" cy="24" rx="9.5" ry="15.2" transform="rotate(120 24 24)" />
-      </g>
-    </svg>
-  );
-}
-
-function GeminiGlyph() {
-  return (
-    <svg viewBox="0 0 48 48" aria-hidden="true">
-      <defs>
-        <linearGradient id="geminiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#8e5ff7" />
-          <stop offset="55%" stopColor="#4aa0ff" />
-          <stop offset="100%" stopColor="#37d7ff" />
-        </linearGradient>
-      </defs>
-      <path
-        d="M24 4 L29.5 18.5 L44 24 L29.5 29.5 L24 44 L18.5 29.5 L4 24 L18.5 18.5 Z"
-        fill="url(#geminiGrad)"
-      />
-    </svg>
-  );
-}
-
-function PerplexityGlyph() {
-  return (
-    <svg viewBox="0 0 48 48" aria-hidden="true">
-      <defs>
-        <linearGradient id="perplexityGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#7ed2c1" />
-          <stop offset="100%" stopColor="#56a996" />
-        </linearGradient>
-      </defs>
-      <rect x="4" y="4" width="40" height="40" rx="10" fill="url(#perplexityGrad)" />
-      <path d="M18 34V14h8.5c4.4 0 7 2.4 7 6s-2.6 6-7 6H18" fill="none" stroke="#fff" strokeWidth="3.4" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M26 26.2L33.5 34" fill="none" stroke="#fff" strokeWidth="3.4" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function CopilotGlyph() {
-  return (
-    <svg viewBox="0 0 48 48" aria-hidden="true">
-      <defs>
-        <linearGradient id="copilotGradA" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#5ad7ff" />
-          <stop offset="50%" stopColor="#8f7dff" />
-          <stop offset="100%" stopColor="#ff70d6" />
-        </linearGradient>
-        <linearGradient id="copilotGradB" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#ffe45d" />
-          <stop offset="100%" stopColor="#ff8b3d" />
-        </linearGradient>
-      </defs>
-      <path
-        d="M13 14c4.5-5 10.8-5.5 16 0l6 6c4.9 4.9 5.2 11.1 0 16s-11.1 5.1-16 0l-6-6c-5.2-5.2-4.8-11 0-16z"
-        fill="url(#copilotGradA)"
-        opacity="0.95"
-      />
-      <path
-        d="M19 34c-3.8-3.8-3.6-8.3 0-12l6-6c4.1-4 8.8-4.1 12 0"
-        fill="none"
-        stroke="url(#copilotGradB)"
-        strokeWidth="5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function GrokGlyph() {
-  return (
-    <svg viewBox="0 0 48 48" aria-hidden="true">
-      <g fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="24" cy="24" r="12.5" />
-        <path d="M15 15L33 33" />
-        <path d="M31 14.5l-2.5 6.8 6.8-2.5" />
-      </g>
-    </svg>
-  );
-}
-
-function ClaudeGlyph() {
-  return (
-    <svg viewBox="0 0 48 48" aria-hidden="true">
-      <path
-        d="M24 4l4.1 12.4L40.5 24l-12.4 4.1L24 40.5l-4.1-12.4L7.5 24l12.4-7.6z"
-        fill="currentColor"
-      />
-      <path
-        d="M24 10l2.7 8.2L35 24l-8.3 2.8L24 35l-2.7-8.2L13 24l8.3-5.8z"
-        fill="rgba(255,255,255,0.82)"
-      />
-    </svg>
-  );
-}
-
-function FloatingBadge({ className, label, children }) {
+function FloatingBadge({ className, label, src }) {
   return (
     <div className={`hero-badge hero-logo-badge ${className || ''}`}>
-      <div className="hero-badge-icon">{children}</div>
+      <img className="hero-badge-image" src={src} alt="" />
       <span className="sr-only">{label}</span>
     </div>
   );
@@ -437,30 +338,18 @@ function StatGrid() {
 function HomePage() {
   return (
     <Shell>
-      <section className="hero">
+      <section className="hero home-hero">
         <div className="hero-primary">
           <div className="hero-watermark" aria-hidden="true">
             <img src={logo} alt="" />
           </div>
           <div className="hero-badges hero-floating-badges" aria-hidden="true">
-            <FloatingBadge className="badge-chatgpt" label="ChatGPT">
-              <ChatGPTGlyph />
-            </FloatingBadge>
-            <FloatingBadge className="badge-gemini" label="Gemini">
-              <GeminiGlyph />
-            </FloatingBadge>
-            <FloatingBadge className="badge-perplexity" label="Perplexity">
-              <PerplexityGlyph />
-            </FloatingBadge>
-            <FloatingBadge className="badge-copilot" label="Microsoft Copilot">
-              <CopilotGlyph />
-            </FloatingBadge>
-            <FloatingBadge className="badge-grok" label="Grok">
-              <GrokGlyph />
-            </FloatingBadge>
-            <FloatingBadge className="badge-claude" label="Claude">
-              <ClaudeGlyph />
-            </FloatingBadge>
+            <FloatingBadge className="badge-chatgpt" label="ChatGPT" src={chatgptLogo} />
+            <FloatingBadge className="badge-gemini" label="Gemini" src={geminiLogo} />
+            <FloatingBadge className="badge-perplexity" label="Perplexity" src={perplexityLogo} />
+            <FloatingBadge className="badge-copilot" label="Microsoft Copilot" src={copilotLogo} />
+            <FloatingBadge className="badge-grok" label="Grok" src={grokLogo} />
+            <FloatingBadge className="badge-claude" label="Claude" src={claudeLogo} />
           </div>
           <div className="hero-copy-block">
             <h1 className="rotating-hero">
@@ -469,7 +358,7 @@ function HomePage() {
             <p className="hero-catchline">Get discovered and recommended by ChatGPT, Google AI, Claude, Perplexity, and other AI search engines.</p>
             <div className="actions hero-actions-center">
               <Link className="btn" to="/audit">
-                FREE AI AUDIT
+                Run Free AI Audit
               </Link>
               <Link className="btn secondary" to="/chatgpt-ads">
                 Join ChatGPT Ads Waitlist

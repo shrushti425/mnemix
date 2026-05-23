@@ -138,17 +138,25 @@ a { color: inherit; text-decoration: none; }
   padding: 26px 0 34px;
 }
 
+.home-hero {
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
 .hero-primary {
   position: relative;
-  min-height: 640px;
+  min-height: 700px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .hero-copy-block {
   position: relative;
   z-index: 2;
-  max-width: 980px;
+  max-width: 1080px;
   margin: 0 auto;
-  padding-top: 120px;
+  padding-top: 140px;
   text-align: center;
 }
 
@@ -179,66 +187,49 @@ h1 {
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: rgba(255, 255, 255, 0.04);
+  overflow: hidden;
   backdrop-filter: blur(10px);
   animation: floatBadge 5.5s ease-in-out infinite;
   box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.025), 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
 .hero-logo-badge {
-  width: 94px;
-  height: 94px;
+  width: 96px;
+  height: 96px;
 }
 
-.hero-badge-icon {
-  width: 56px;
-  height: 56px;
-  display: grid;
-  place-items: center;
-}
-
-.hero-badge-icon svg {
+.hero-badge-image {
   width: 100%;
   height: 100%;
+  object-fit: contain;
   display: block;
-}
-
-.hero-badge-icon svg * {
-  color: inherit;
+  padding: 12px;
 }
 
 .hero-watermark {
   position: absolute;
-  inset: 22px 6% 6% 10%;
+  inset: 12px 4% 2% 8%;
   display: grid;
   place-items: center;
-  opacity: 0.06;
+  opacity: 0.04;
   filter: blur(0.4px);
-  transform: scale(1.08);
+  transform: scale(1.18);
   z-index: 0;
 }
 
 .hero-watermark img {
-  width: min(100%, 760px);
+  width: min(100%, 1080px);
   height: auto;
   object-fit: contain;
   filter: saturate(0.85) contrast(1.04);
 }
 
-.badge-chatgpt { top: 22px; left: 45%; color: #7fc4b8; }
-.badge-claude { top: 150px; left: 71%; color: #ef835b; }
-.badge-gemini { top: 62px; left: 71%; color: #4ba7ff; }
-.badge-grok { top: 560px; left: 76%; color: #f1f1f1; }
-.badge-perplexity { top: 535px; left: 20%; color: #f6f1ea; }
-.badge-copilot { top: 475px; left: 19%; color: #ffffff; }
-
-.badge-grok .hero-badge-icon,
-.badge-claude .hero-badge-icon,
-.badge-chatgpt .hero-badge-icon,
-.badge-perplexity .hero-badge-icon,
-.badge-gemini .hero-badge-icon,
-.badge-copilot .hero-badge-icon {
-  color: currentColor;
-}
+.badge-chatgpt { top: 5%; left: 46%; }
+.badge-gemini { top: 20%; left: 73%; }
+.badge-claude { top: 47%; left: 79%; }
+.badge-grok { top: 76%; left: 72%; }
+.badge-perplexity { top: 84%; left: 31%; }
+.badge-copilot { top: 58%; left: 17%; }
 
 .hero-primary > :not(.hero-watermark):not(.hero-badges) {
   position: relative;
@@ -263,11 +254,13 @@ h1 {
 }
 
 .hero-catchline {
-  margin: 24px auto 0;
+  margin: 22px auto 0;
   color: var(--text);
-  font-size: clamp(24px, 2.5vw, 36px);
-  line-height: 1.45;
-  max-width: 30ch;
+  font-family: "Inter", "DM Sans", sans-serif;
+  font-weight: 500;
+  font-size: clamp(20px, 2.1vw, 31px);
+  line-height: 1.38;
+  max-width: 31ch;
 }
 
 @keyframes floatBadge {
@@ -1257,19 +1250,19 @@ input:focus, select:focus, textarea:focus {
   }
 
   .hero-primary {
-    min-height: 560px;
+    min-height: 620px;
   }
 
   .hero-copy-block {
-    padding-top: 100px;
+    padding-top: 116px;
   }
 
-  .badge-chatgpt { left: 46%; top: 12px; }
-  .badge-claude { left: 72%; top: 120px; }
-  .badge-gemini { left: 74%; top: 40px; }
-  .badge-grok { top: 450px; left: 74%; }
-  .badge-perplexity { top: 430px; left: 14%; }
-  .badge-copilot { top: 360px; left: 16%; }
+  .badge-chatgpt { left: 49%; top: 6%; }
+  .badge-gemini { left: 75%; top: 18%; }
+  .badge-claude { left: 80%; top: 44%; }
+  .badge-grok { top: 74%; left: 73%; }
+  .badge-perplexity { top: 84%; left: 27%; }
+  .badge-copilot { top: 59%; left: 12%; }
 }
 
 .spacer {
@@ -1322,33 +1315,28 @@ input:focus, select:focus, textarea:focus {
   }
 
   .hero-primary {
-    min-height: 470px;
+    min-height: 520px;
   }
 
   .hero-watermark {
-    inset: 32px -4% 0;
-    opacity: 0.045;
+    inset: 26px -10% 0;
+    opacity: 0.035;
   }
 
   .hero-logo-badge {
-    width: 60px;
-    height: 60px;
+    width: 66px;
+    height: 66px;
   }
 
-  .hero-badge-icon {
-    width: 38px;
-    height: 38px;
-  }
-
-  .badge-chatgpt { left: 46%; top: 0; }
-  .badge-gemini { left: 70%; top: 28px; }
-  .badge-claude { left: 72%; top: 108px; }
-  .badge-grok { left: 74%; top: 330px; }
-  .badge-perplexity { top: 336px; left: 16%; }
-  .badge-copilot { top: 288px; left: 15%; }
+  .badge-chatgpt { left: 48%; top: 5%; }
+  .badge-gemini { left: 76%; top: 18%; }
+  .badge-claude { left: 79%; top: 42%; }
+  .badge-grok { left: 74%; top: 72%; }
+  .badge-perplexity { top: 77%; left: 21%; }
+  .badge-copilot { top: 58%; left: 11%; }
 
   .hero-copy-block {
-    padding-top: 90px;
+    padding-top: 104px;
   }
 
   .form-grid,
