@@ -6,8 +6,8 @@ const corsHeaders = {
 };
 
 const OPENAI_URL = 'https://api.openai.com/v1/chat/completions';
-const MODEL = 'gpt-4o';
-const MAX_CONTEXT_CHARS = 18000;
+const MODEL = 'gpt-4o-mini';
+const MAX_CONTEXT_CHARS = 12000;
 const PHONE_RULES = {
   IN: { dial: '91', minDigits: 10, maxDigits: 10 },
   US: { dial: '1', minDigits: 10, maxDigits: 10 },
@@ -138,7 +138,7 @@ async function callOpenAI(messages, temperature = 0.2) {
         messages
       })
     },
-    45000
+    25000
   );
 
   const raw = await res.text();
