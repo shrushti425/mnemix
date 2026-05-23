@@ -143,6 +143,15 @@ a { color: inherit; text-decoration: none; }
   min-height: 640px;
 }
 
+.hero-copy-block {
+  position: relative;
+  z-index: 2;
+  max-width: 980px;
+  margin: 0 auto;
+  padding-top: 120px;
+  text-align: center;
+}
+
 h1, h2, h3 {
   font-family: "Syne", sans-serif;
   margin: 0;
@@ -176,13 +185,13 @@ h1 {
 }
 
 .hero-logo-badge {
-  width: 86px;
-  height: 86px;
+  width: 94px;
+  height: 94px;
 }
 
 .hero-badge-icon {
-  width: 52px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
   display: grid;
   place-items: center;
 }
@@ -199,12 +208,12 @@ h1 {
 
 .hero-watermark {
   position: absolute;
-  inset: 36px 8% 8% 10%;
+  inset: 22px 6% 6% 10%;
   display: grid;
   place-items: center;
-  opacity: 0.08;
+  opacity: 0.06;
   filter: blur(0.4px);
-  transform: scale(1.05);
+  transform: scale(1.08);
   z-index: 0;
 }
 
@@ -215,12 +224,12 @@ h1 {
   filter: saturate(0.85) contrast(1.04);
 }
 
-.badge-chatgpt { top: 0; left: 16%; color: #7fc4b8; }
-.badge-claude { top: 32px; left: 44%; color: #ef835b; }
-.badge-gemini { top: 16px; left: 72%; color: #4ba7ff; }
-.badge-grok { top: 182px; left: 8%; color: #f1f1f1; }
-.badge-perplexity { top: 272px; left: 32%; color: #f6f1ea; }
-.badge-copilot { top: 276px; left: 68%; color: #ffffff; }
+.badge-chatgpt { top: 22px; left: 45%; color: #7fc4b8; }
+.badge-claude { top: 150px; left: 71%; color: #ef835b; }
+.badge-gemini { top: 62px; left: 71%; color: #4ba7ff; }
+.badge-grok { top: 560px; left: 76%; color: #f1f1f1; }
+.badge-perplexity { top: 535px; left: 20%; color: #f6f1ea; }
+.badge-copilot { top: 475px; left: 19%; color: #ffffff; }
 
 .badge-grok .hero-badge-icon,
 .badge-claude .hero-badge-icon,
@@ -237,7 +246,8 @@ h1 {
 }
 
 .rotating-hero {
-  max-width: 11ch;
+  max-width: 14ch;
+  margin: 0 auto;
 }
 
 .rotating-word {
@@ -253,13 +263,11 @@ h1 {
 }
 
 .hero-catchline {
-  margin: 16px 0 0;
+  margin: 24px auto 0;
   color: var(--text);
-  font-family: "Syne", sans-serif;
-  font-weight: 700;
-  font-size: clamp(24px, 2.6vw, 38px);
-  line-height: 1.1;
-  max-width: 20ch;
+  font-size: clamp(24px, 2.5vw, 36px);
+  line-height: 1.45;
+  max-width: 30ch;
 }
 
 @keyframes floatBadge {
@@ -284,6 +292,10 @@ h1 {
   gap: 12px;
   flex-wrap: wrap;
   margin-top: 22px;
+}
+
+.hero-actions-center {
+  justify-content: center;
 }
 
 .btn {
@@ -1248,12 +1260,16 @@ input:focus, select:focus, textarea:focus {
     min-height: 560px;
   }
 
-  .badge-chatgpt { left: 8%; }
-  .badge-claude { left: 36%; }
-  .badge-gemini { left: 64%; }
-  .badge-grok { top: 178px; left: 2%; }
-  .badge-perplexity { top: 304px; left: 26%; }
-  .badge-copilot { top: 292px; left: 66%; }
+  .hero-copy-block {
+    padding-top: 100px;
+  }
+
+  .badge-chatgpt { left: 46%; top: 12px; }
+  .badge-claude { left: 72%; top: 120px; }
+  .badge-gemini { left: 74%; top: 40px; }
+  .badge-grok { top: 450px; left: 74%; }
+  .badge-perplexity { top: 430px; left: 14%; }
+  .badge-copilot { top: 360px; left: 16%; }
 }
 
 .spacer {
@@ -1306,30 +1322,34 @@ input:focus, select:focus, textarea:focus {
   }
 
   .hero-primary {
-    min-height: 500px;
+    min-height: 470px;
   }
 
   .hero-watermark {
-    inset: 42px 0 0;
-    opacity: 0.06;
+    inset: 32px -4% 0;
+    opacity: 0.045;
   }
 
   .hero-logo-badge {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
   }
 
   .hero-badge-icon {
-    width: 42px;
-    height: 42px;
+    width: 38px;
+    height: 38px;
   }
 
-  .badge-chatgpt { left: 0; top: 6px; }
-  .badge-gemini { left: 56%; top: 0; }
-  .badge-claude { left: 30%; top: 20px; }
-  .badge-grok { left: 72%; top: 140px; }
-  .badge-perplexity { top: 260px; left: 18%; }
-  .badge-copilot { top: 248px; left: 60%; }
+  .badge-chatgpt { left: 46%; top: 0; }
+  .badge-gemini { left: 70%; top: 28px; }
+  .badge-claude { left: 72%; top: 108px; }
+  .badge-grok { left: 74%; top: 330px; }
+  .badge-perplexity { top: 336px; left: 16%; }
+  .badge-copilot { top: 288px; left: 15%; }
+
+  .hero-copy-block {
+    padding-top: 90px;
+  }
 
   .form-grid,
   .phone-wrap {

@@ -442,7 +442,6 @@ function HomePage() {
           <div className="hero-watermark" aria-hidden="true">
             <img src={logo} alt="" />
           </div>
-          <div className="pill">GEO agency for AI-era growth</div>
           <div className="hero-badges hero-floating-badges" aria-hidden="true">
             <FloatingBadge className="badge-chatgpt" label="ChatGPT">
               <ChatGPTGlyph />
@@ -463,23 +462,21 @@ function HomePage() {
               <ClaudeGlyph />
             </FloatingBadge>
           </div>
-          <h1 className="rotating-hero">
-            Get discovered by <RotatingWord />
-          </h1>
-          <p className="hero-catchline">The next step of marketing is here. You’ll need us to stay on top of AI answers.</p>
-          <p className="lead">
-            Mnemix AI helps brands show up clearly inside ChatGPT-style answers, AI recommendations, and the next wave of ad inventory. Start with a free visibility audit, then build the entity, authority, and demand layers that make AI choose you first.
-          </p>
-          <div className="actions">
-            <Link className="btn" to="/audit">
-              Get Free AI Audit
-            </Link>
-            <Link className="btn secondary" to="/chatgpt-ads">
-              Join ChatGPT Ads Waitlist
-            </Link>
+          <div className="hero-copy-block">
+            <h1 className="rotating-hero">
+              Get Organic Traffic From <RotatingWord />
+            </h1>
+            <p className="hero-catchline">Get discovered and recommended by ChatGPT, Google AI, Claude, Perplexity, and other AI search engines.</p>
+            <div className="actions hero-actions-center">
+              <Link className="btn" to="/audit">
+                FREE AI AUDIT
+              </Link>
+              <Link className="btn secondary" to="/chatgpt-ads">
+                Join ChatGPT Ads Waitlist
+              </Link>
+            </div>
           </div>
         </div>
-        <StatGrid />
       </section>
 
       <section className="section">
@@ -497,30 +494,6 @@ function HomePage() {
             <h3>“Mnemix made the AI visibility gaps painfully clear, then gave us a path to fix them.”</h3>
             <p className="placeholder-copy">[PLACEHOLDER] This testimonial is a stand-in until we have a published client quote.</p>
           </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <SectionHeading
-          title="What we do"
-          copy="We keep the offer tight: audit the brand, fix the signals, and prepare the brand for the ad layer that comes next."
-        />
-        <div className="grid-3">
-          <article className="panel card">
-            <span className="tag">Audit</span>
-            <h3>GEO audits delivered in 48 hours</h3>
-            <p>Get a fast read on how AI systems understand your brand, where the signal gaps are, and what they’re likely to say back to users.</p>
-          </article>
-          <article className="panel card">
-            <span className="tag">Strategy</span>
-            <h3>Entity signals built to survive AI model updates</h3>
-            <p>We shape the brand story, proof points, schema, and comparison pages so your visibility doesn’t fall apart every time the models shift.</p>
-          </article>
-          <article className="panel card">
-            <span className="tag">Growth</span>
-            <h3>First-mover positioning for the ChatGPT Ads era</h3>
-            <p>We help you prepare for the ad layer inside AI conversations before category leaders lock in the early advantage.</p>
-          </article>
         </div>
       </section>
 
