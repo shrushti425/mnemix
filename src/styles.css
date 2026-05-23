@@ -138,6 +138,11 @@ a { color: inherit; text-decoration: none; }
   padding: 26px 0 34px;
 }
 
+.hero-primary {
+  position: relative;
+  min-height: 640px;
+}
+
 h1, h2, h3 {
   font-family: "Syne", sans-serif;
   margin: 0;
@@ -151,9 +156,10 @@ h1 {
 }
 
 .hero-badges {
-  position: relative;
-  min-height: 68px;
-  margin: 8px 0 14px;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .hero-badge {
@@ -161,22 +167,74 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 7px 12px;
-  border-radius: 999px;
+  border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.03);
-  color: #e7e0d8;
-  font-size: 12px;
-  font-weight: 700;
+  background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(10px);
   animation: floatBadge 5.5s ease-in-out infinite;
+  box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.025), 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
-.badge-chatgpt { top: 0; left: 8%; }
-.badge-claude { top: 26px; left: 28%; }
-.badge-gemini { top: 0; left: 54%; }
-.badge-grok { top: 26px; left: 74%; }
-.badge-perplexity { top: 54px; left: 46%; }
+.hero-logo-badge {
+  width: 86px;
+  height: 86px;
+}
+
+.hero-badge-icon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+}
+
+.hero-badge-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hero-badge-icon svg * {
+  color: inherit;
+}
+
+.hero-watermark {
+  position: absolute;
+  inset: 36px 8% 8% 10%;
+  display: grid;
+  place-items: center;
+  opacity: 0.08;
+  filter: blur(0.4px);
+  transform: scale(1.05);
+  z-index: 0;
+}
+
+.hero-watermark img {
+  width: min(100%, 760px);
+  height: auto;
+  object-fit: contain;
+  filter: saturate(0.85) contrast(1.04);
+}
+
+.badge-chatgpt { top: 0; left: 16%; color: #7fc4b8; }
+.badge-claude { top: 32px; left: 44%; color: #ef835b; }
+.badge-gemini { top: 16px; left: 72%; color: #4ba7ff; }
+.badge-grok { top: 182px; left: 8%; color: #f1f1f1; }
+.badge-perplexity { top: 272px; left: 32%; color: #f6f1ea; }
+.badge-copilot { top: 276px; left: 68%; color: #ffffff; }
+
+.badge-grok .hero-badge-icon,
+.badge-claude .hero-badge-icon,
+.badge-chatgpt .hero-badge-icon,
+.badge-perplexity .hero-badge-icon,
+.badge-gemini .hero-badge-icon,
+.badge-copilot .hero-badge-icon {
+  color: currentColor;
+}
+
+.hero-primary > :not(.hero-watermark):not(.hero-badges) {
+  position: relative;
+  z-index: 2;
+}
 
 .rotating-hero {
   max-width: 11ch;
@@ -545,6 +603,18 @@ input:focus, select:focus, textarea:focus {
   gap: 10px;
   font-weight: 800;
   color: var(--text);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .brand-wrap {
@@ -1173,6 +1243,17 @@ input:focus, select:focus, textarea:focus {
   .hero-visual {
     min-height: 320px;
   }
+
+  .hero-primary {
+    min-height: 560px;
+  }
+
+  .badge-chatgpt { left: 8%; }
+  .badge-claude { left: 36%; }
+  .badge-gemini { left: 64%; }
+  .badge-grok { top: 178px; left: 2%; }
+  .badge-perplexity { top: 304px; left: 26%; }
+  .badge-copilot { top: 292px; left: 66%; }
 }
 
 .spacer {
@@ -1224,15 +1305,31 @@ input:focus, select:focus, textarea:focus {
     max-width: 14ch;
   }
 
-  .hero-badges {
-    min-height: 92px;
+  .hero-primary {
+    min-height: 500px;
   }
 
-  .badge-chatgpt { left: 0; }
-  .badge-claude { left: 24%; }
-  .badge-gemini { left: 54%; }
-  .badge-grok { left: 76%; }
-  .badge-perplexity { top: 62px; left: 40%; }
+  .hero-watermark {
+    inset: 42px 0 0;
+    opacity: 0.06;
+  }
+
+  .hero-logo-badge {
+    width: 70px;
+    height: 70px;
+  }
+
+  .hero-badge-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .badge-chatgpt { left: 0; top: 6px; }
+  .badge-gemini { left: 56%; top: 0; }
+  .badge-claude { left: 30%; top: 20px; }
+  .badge-grok { left: 72%; top: 140px; }
+  .badge-perplexity { top: 260px; left: 18%; }
+  .badge-copilot { top: 248px; left: 60%; }
 
   .form-grid,
   .phone-wrap {
