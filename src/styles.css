@@ -73,7 +73,7 @@ a { color: inherit; text-decoration: none; }
   height: 34px;
   display: grid;
   place-items: center;
-  border: 1px solid rgba(255, 107, 43, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.82);
   background: linear-gradient(135deg, rgba(255, 107, 43, 0.24), rgba(255, 181, 71, 0.1));
   overflow: hidden;
 }
