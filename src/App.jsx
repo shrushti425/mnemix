@@ -128,6 +128,11 @@ function normalizeWebsite(input) {
   return `https://${url}`;
 }
 
+function normalizeWebsiteFieldValue(input) {
+  const normalized = normalizeWebsite(input);
+  return normalized || String(input || '').trim();
+}
+
 function normalizePhone(country, countryCode, phoneNumber) {
   const rule = PHONE_RULES[country];
   if (!rule) return null;
@@ -613,12 +618,12 @@ function AuditPage() {
       return;
     }
     if (!validateEmail(form.email_id)) {
-      setError('Please enter a valid email address.');
+      setError('Enter valid email id');
       return;
     }
     const normalizedPhone = normalizePhone(form.phone_country, form.phone_country_code, form.phone_number);
     if (!normalizedPhone) {
-      setPhoneError('Please enter a valid phone number for the selected country.');
+      setPhoneError('Enter valid phone number');
       return;
     }
 
@@ -734,6 +739,12 @@ function AuditPage() {
                     type="text"
                     value={form.brand_website}
                     onChange={(event) => setForm((prev) => ({ ...prev, brand_website: event.target.value }))}
+                    onBlur={(event) =>
+                      setForm((prev) => ({
+                        ...prev,
+                        brand_website: normalizeWebsiteFieldValue(event.target.value)
+                      }))
+                    }
                     placeholder="www.acme.com"
                   />
                 </label>
@@ -764,6 +775,8 @@ function AuditPage() {
                     </select>
                     <input
                       type="tel"
+                      inputMode="numeric"
+                      pattern="[0-9]*"
                       value={form.phone_number}
                       onChange={(event) => setForm((prev) => ({ ...prev, phone_number: event.target.value }))}
                       placeholder={`Enter ${currentPhoneRule.minDigits}${currentPhoneRule.minDigits === currentPhoneRule.maxDigits ? '' : `-${currentPhoneRule.maxDigits}`} digits`}
@@ -956,12 +969,12 @@ function LeadCaptureForm({ buttonLabel = 'Send Message', successMessage = 'Thank
       return;
     }
     if (!validateEmail(form.email_id)) {
-      setError('Please enter a valid email address.');
+      setError('Enter valid email id');
       return;
     }
     const normalizedPhone = normalizePhone(form.phone_country, form.phone_country_code, form.phone_number);
     if (!normalizedPhone) {
-      setPhoneError('Please enter a valid phone number for the selected country.');
+      setPhoneError('Enter valid phone number');
       return;
     }
 
@@ -1004,11 +1017,27 @@ function LeadCaptureForm({ buttonLabel = 'Send Message', successMessage = 'Thank
         </label>
         <label className="field full">
           <span>Website</span>
-          <input value={form.brand_website} onChange={(e) => setForm((prev) => ({ ...prev, brand_website: e.target.value }))} type="text" placeholder="www.brand.com" />
+          <input
+            value={form.brand_website}
+            onChange={(e) => setForm((prev) => ({ ...prev, brand_website: e.target.value }))}
+            onBlur={(e) =>
+              setForm((prev) => ({
+                ...prev,
+                brand_website: normalizeWebsiteFieldValue(e.target.value)
+              }))
+            }
+            type="text"
+            placeholder="www.brand.com"
+          />
         </label>
         <label className="field">
           <span>Email</span>
-          <input value={form.email_id} onChange={(e) => setForm((prev) => ({ ...prev, email_id: e.target.value }))} type="email" placeholder="you@company.com" />
+          <input
+            value={form.email_id}
+            onChange={(e) => setForm((prev) => ({ ...prev, email_id: e.target.value }))}
+            type="email"
+            placeholder="you@company.com"
+          />
         </label>
         <label className="field">
           <span>Phone Number</span>
@@ -1020,7 +1049,14 @@ function LeadCaptureForm({ buttonLabel = 'Send Message', successMessage = 'Thank
                 </option>
               ))}
             </select>
-            <input value={form.phone_number} onChange={(e) => setForm((prev) => ({ ...prev, phone_number: e.target.value }))} type="tel" placeholder={`Enter ${currentPhoneRule.minDigits}${currentPhoneRule.minDigits === currentPhoneRule.maxDigits ? '' : `-${currentPhoneRule.maxDigits}`} digits`} />
+            <input
+              value={form.phone_number}
+              onChange={(e) => setForm((prev) => ({ ...prev, phone_number: e.target.value }))}
+              type="tel"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              placeholder={`Enter ${currentPhoneRule.minDigits}${currentPhoneRule.minDigits === currentPhoneRule.maxDigits ? '' : `-${currentPhoneRule.maxDigits}`} digits`}
+            />
           </div>
         </label>
         <label className="field full">
