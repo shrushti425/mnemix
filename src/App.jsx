@@ -4,6 +4,7 @@ import { Link, NavLink, Route, Routes, useLocation } from 'react-router-dom';
 import { Canvas } from '@react-three/fiber';
 import { Float, Sparkles } from '@react-three/drei';
 import { gsap } from 'gsap';
+import logo from './assets/mnemix-logo.jpg';
 
 const AUDIT_LOCK_PREFIX = 'mnemix-audit-lock:';
 const PHONE_RULES = {
@@ -167,7 +168,9 @@ function Shell({ children, auditMode = false }) {
       <header className="topbar">
         <div className="brand-wrap">
           <Link className="brand" to="/">
-            <span className="brand-mark">M</span>
+            <span className="brand-mark">
+              <img className="brand-logo" src={logo} alt="Mnemix AI logo" />
+            </span>
             <span>Mnemix AI</span>
           </Link>
           {auditMode ? <Link className="back-home" to="/">Back to Home</Link> : null}
@@ -199,7 +202,12 @@ function Shell({ children, auditMode = false }) {
       </AnimatePresence>
 
       <footer className="footer">
-        <div>Mnemix AI</div>
+        <div className="footer-brand">
+          <span className="brand-mark brand-mark-sm">
+            <img className="brand-logo" src={logo} alt="Mnemix AI logo" />
+          </span>
+          <span>Mnemix AI</span>
+        </div>
         <div className="footer-links">
           <span>GEO agency for AI search, answer engines, and what comes next.</span>
           <a href="https://x.com/MnemixAI" target="_blank" rel="noreferrer">
