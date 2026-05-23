@@ -117,6 +117,7 @@ const BLOG_POSTS = [
 ];
 
 const PLATFORM_WORDS = ['ChatGPT', 'Claude', 'Gemini', 'Grok', 'Perplexity'];
+const API_FALLBACK_BASE = 'https://mnemixaii.netlify.app';
 
 function normalizeWebsite(input) {
   let url = String(input || '').trim().toLowerCase();
@@ -149,6 +150,25 @@ function validateEmail(value) {
 
 function siteLockKey(brandName, website) {
   return `${AUDIT_LOCK_PREFIX}${String(brandName || '').trim().toLowerCase()}|${String(website || '').trim().toLowerCase()}`;
+}
+
+function getApiUrl(path) {
+  const base = typeof window !== 'undefined' && window.location.protocol === 'file:' ? API_FALLBACK_BASE : '';
+  return `${base}${path}`;
+}
+
+async function readJsonResponse(response) {
+  const text = String(await response.text() || '').trim();
+  if (!text) return {};
+  try {
+    return JSON.parse(text);
+  } catch (error) {
+    const cleaned = text.replace(/<\/?[^>]+(>|$)/g, ' ').replace(/\s+/g, ' ').trim();
+    return {
+      _nonJson: true,
+      message: cleaned.slice(0, 220) || 'Unexpected non-JSON response'
+    };
+  }
 }
 
 function currencylessCountLabel(value) {
@@ -617,7 +637,7 @@ function AuditPage() {
         window.setTimeout(() => setProgressStep(3), 34000)
       ];
 
-      const response = await fetch('/api/audit', {
+      const response = await fetch(getApiUrl('/api/audit'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -632,7 +652,7 @@ function AuditPage() {
         })
       });
 
-      const data = await response.json();
+      const data = await readJsonResponse(response);
       stepTimers.forEach((timer) => window.clearTimeout(timer));
       setProgressStep(3);
 
@@ -947,7 +967,7 @@ function LeadCaptureForm({ buttonLabel = 'Send Message', successMessage = 'Thank
 
     try {
       setLoading(true);
-      const response = await fetch('/api/audit', {
+      const response = await fetch(getApiUrl('/api/audit'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -962,7 +982,7 @@ function LeadCaptureForm({ buttonLabel = 'Send Message', successMessage = 'Thank
         })
       });
 
-      const data = await response.json();
+      const data = await readJsonResponse(response);
       if (!response.ok) throw new Error(data.message || data.error || 'Submission failed');
 
       setSuccess(true);
