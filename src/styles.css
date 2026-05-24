@@ -221,7 +221,15 @@ h1 {
   width: 56%;
   height: 56%;
   object-fit: contain;
+  object-position: center;
   display: block;
+}
+
+.badge-grok .hero-badge-image {
+  width: 60%;
+  height: 60%;
+  transform: rotate(90deg) scale(0.9);
+  transform-origin: center;
 }
 
 .hero-watermark {
