@@ -584,10 +584,19 @@ input:focus, select:focus, textarea:focus {
 }
 
 .phone-wrap {
-  display: grid;
-  grid-template-columns: minmax(148px, 0.36fr) minmax(0, 1fr);
+  display: flex;
   gap: 10px;
   align-items: stretch;
+}
+
+.phone-wrap select {
+  flex: 0 0 170px;
+  width: 170px;
+}
+
+.phone-wrap input {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .form-grid {
@@ -662,6 +671,12 @@ input:focus, select:focus, textarea:focus {
   border: 1px solid rgba(255, 181, 71, 0.24);
   border-radius: 999px;
   background: rgba(255, 181, 71, 0.08);
+}
+
+.inline-contact-link {
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .hero-visual {
@@ -961,8 +976,7 @@ input:focus, select:focus, textarea:focus {
 }
 
 .phone-wrap {
-  display: grid;
-  grid-template-columns: minmax(148px, 0.36fr) minmax(0, 1fr);
+  display: flex;
   gap: 10px;
 }
 
@@ -971,6 +985,15 @@ input:focus, select:focus, textarea:focus {
   min-width: 0;
   width: 100%;
   min-inline-size: 0;
+}
+
+.phone-wrap select {
+  flex: 0 0 170px;
+  width: 170px;
+}
+
+.phone-wrap input {
+  flex: 1 1 auto;
 }
 
 .phone-wrap select {

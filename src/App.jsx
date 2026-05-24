@@ -600,6 +600,17 @@ function AuditPage() {
     ];
   }, [result]);
 
+  const buildAuditLockedState = (brandName, website, message) => ({
+    brandName,
+    website,
+    message:
+      message ||
+      'Your free audit turns are over for this brand. (If it wasn’t you, contact us and we’ll get back to you.)',
+    detail: 'If it wasn’t you, contact us and we’ll get back to you.',
+    contactUrl: '/contact',
+    duplicate: true
+  });
+
   const submitAudit = async (event) => {
     event.preventDefault();
     setError('');
@@ -632,7 +643,7 @@ function AuditPage() {
 
     const key = siteLockKey(brand, website);
     if (window.localStorage.getItem(key)) {
-      setLocked({ brandName: brand, website });
+      setLocked(buildAuditLockedState(brand, website));
       return;
     }
 
@@ -663,6 +674,17 @@ function AuditPage() {
       const data = await readJsonResponse(response);
       stepTimers.forEach((timer) => window.clearTimeout(timer));
       setProgressStep(3);
+
+      if (response.status === 409 || data?.duplicate) {
+        setLocked(
+          buildAuditLockedState(
+            brand,
+            website,
+            data?.message || 'Your free audit turns are over for this brand. (If it wasn’t you, contact us and we’ll get back to you.)'
+          )
+        );
+        return;
+      }
 
       if (!response.ok) {
         throw new Error(data.message || data.error || 'Audit failed');
@@ -799,7 +821,7 @@ function AuditPage() {
             <div className="result-card locked-card">
               <div className="result-top">
                 <div>
-                  <h2>{locked?.brandName || result?.brandName || 'Your free audit is already unlocked'}</h2>
+                  <h2>{locked?.brandName || result?.brandName || 'Your free audit turns are over'}</h2>
                   <div className="meta">
                     <a href={locked?.website || result?.website || '/'} target="_blank" rel="noreferrer">
                       {locked?.website || result?.website || ''}
@@ -809,11 +831,18 @@ function AuditPage() {
                 <span className={`badge ${getPillColor('Partial visibility')}`}>Free audit already used</span>
               </div>
               <div className="fix-box">
-                <strong>Your free audit is already unlocked</strong>
+                <strong>Your free audit turns are over</strong>
                 <p>
-                  You’ve already run this brand through the free audit once, so we won’t generate another free version here. The full paid report is the next step if you want the complete breakdown, deeper signal analysis, and the remaining recommendations.
+                  {locked?.message ||
+                    'You’ve already run this brand through the free audit once, so we won’t generate another free version here.'}
                 </p>
-                <p className="locked-note">If this wasn’t you, or if you want help moving faster, reach out and we’ll guide you to the next step.</p>
+                <p className="locked-note">
+                  If this wasn’t you,{' '}
+                  <Link className="inline-contact-link" to={locked?.contactUrl || '/contact'}>
+                    contact us
+                  </Link>{' '}
+                  and we’ll get back to you.
+                </p>
               </div>
               <div className="cta-row">
                 <Link className="btn" to="/contact">

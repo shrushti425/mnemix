@@ -280,7 +280,11 @@ async function lookupInSheets(params) {
   const query = new URLSearchParams({
     mode: 'lookup',
     brand_name: params.brand_name || '',
-    brand_website: params.brand_website || ''
+    brand_website: params.brand_website || '',
+    email_id: params.email_id || '',
+    phone_country: params.phone_country || '',
+    phone_country_code: params.phone_country_code || '',
+    phone_number: params.phone_number || ''
   });
 
   try {
@@ -354,6 +358,24 @@ exports.handler = async (event) => {
     const normalizedPhone = normalizePhone(phoneCountry, phoneCountryCode, phone);
     if (!normalizedPhone.ok) {
       return response(400, { error: 'Please enter a valid phone number for the selected country' });
+    }
+
+    const duplicateLookup = await lookupInSheets({
+      brand_name: brandName,
+      brand_website: url,
+      email_id: email,
+      phone_country: phoneCountry,
+      phone_country_code: phoneCountryCode,
+      phone_number: normalizedPhone.formatted
+    });
+
+    if (duplicateLookup.ok && duplicateLookup.data?.found) {
+      return response(409, {
+        duplicate: true,
+        message: 'Your free audit turns are over for this brand. (If it wasn’t you, contact us and we’ll get back to you.)',
+        contactUrl: '/contact',
+        matches: Array.isArray(duplicateLookup.data.matches) ? duplicateLookup.data.matches.slice(0, 3) : []
+      });
     }
 
     if (formType === 'contact') {
@@ -579,10 +601,21 @@ function doPost(e) {
   var rows = sheet.getDataRange().getValues();
   if (String(data.type || '') === 'audit') {
     var key = String(data.website || '').trim().toLowerCase() + '|' + String(data.brandName || '').trim().toLowerCase();
+    var emailKey = String(data.email || '').trim().toLowerCase();
+    var phoneKey = String(data.phone || '').replace(/\D/g, '');
     for (var i = 1; i < rows.length; i++) {
       var rowType = String(rows[i][1] || '').trim().toLowerCase();
       var existingKey = String(rows[i][3] || '').trim().toLowerCase() + '|' + String(rows[i][2] || '').trim().toLowerCase();
-      if (rowType === 'audit' && existingKey === key) {
+      var existingEmail = String(rows[i][4] || '').trim().toLowerCase();
+      var existingPhone = String(rows[i][5] || '').replace(/\D/g, '');
+      if (
+        rowType === 'audit' &&
+        (
+          existingKey === key ||
+          (emailKey && existingEmail === emailKey) ||
+          (phoneKey && existingPhone === phoneKey)
+        )
+      ) {
         return ContentService.createTextOutput(JSON.stringify({success:true, duplicate:true})).setMimeType(ContentService.MimeType.JSON);
       }
     }
@@ -614,8 +647,10 @@ function doGet(e) {
   var params = (e && e.parameter) || {};
   var brand = String(params.brand_name || '').trim().toLowerCase();
   var website = String(params.brand_website || '').trim().toLowerCase();
-  if (!brand && !website) {
-    return ContentService.createTextOutput(JSON.stringify({success:false, error:'brand_name or brand_website required'})).setMimeType(ContentService.MimeType.JSON);
+  var email = String(params.email_id || '').trim().toLowerCase();
+  var phone = String(params.phone_number || '').replace(/\D/g, '');
+  if (!brand && !website && !email && !phone) {
+    return ContentService.createTextOutput(JSON.stringify({success:false, error:'brand_name, brand_website, email_id, or phone_number required'})).setMimeType(ContentService.MimeType.JSON);
   }
   var rows = sheet.getDataRange().getValues();
   var matches = [];
@@ -624,7 +659,14 @@ function doGet(e) {
     if (rowType !== 'audit') continue;
     var rowBrand = String(rows[i][2] || '').trim().toLowerCase();
     var rowWebsite = String(rows[i][3] || '').trim().toLowerCase();
-    if ((brand && rowBrand === brand) || (website && rowWebsite === website)) {
+    var rowEmail = String(rows[i][4] || '').trim().toLowerCase();
+    var rowPhone = String(rows[i][5] || '').replace(/\D/g, '');
+    if (
+      (brand && rowBrand === brand) ||
+      (website && rowWebsite === website) ||
+      (email && rowEmail === email) ||
+      (phone && rowPhone === phone)
+    ) {
       matches.push({
         timestamp: rows[i][0],
         type: rows[i][1],
