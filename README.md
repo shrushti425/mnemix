@@ -1,4 +1,4 @@
-# Mnemix AI
+# AI Visibility audit tool for Mnemix AI
 
 Mnemix AI is a multi-page GEO agency website and lead-generation tool for brands that want to show up in AI answers and get ready for the ChatGPT Ads era.
 
